@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SIGEA - LOGIN</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Login core CSS-->
+   <link href="{% static 'css/login.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    {% include 'includes/navbar.html' %}
+  </div>
+
+  <div class="container">
+        <div class="row">
+			<div class="col-md-5 mx-auto">
+			<div id="first">
+				<div class="myform form ">
+					 <div class="logo mb-3">
+						 <div class="col-md-12 text-center">
+							<h1>SIGEA - Login</h1>
+                            <h3>Organização</h3>
+						 </div>
+					</div>
+                   <form action="" method="post" name="login">
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Email</label>
+                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Digite o email!">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Senha</label>
+                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Digite a senha!">
+                           </div>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="submit" class=" btn btn-block mybtn1 btn-primary tx-tfm">Entrar</button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <a href="/" class=" btn btn-block mybtn2 btn-info tx-tfm">Voltar</a>                                </span>
+                            </div>
+                            <br>
+                           <div class="form-group">
+                              <p class="text-center">Recupera senha! <a href="#" id="signup">Clique aqui</a></p>
+                           </div>
+                        </form>
+                 
+				</div>
+			</div>
+			  <div id="second">
+			      <div class="myform form ">
+                        <div class="logo mb-3">
+                           <div class="col-md-12 text-center">
+                              <h1 >Signup</h1>
+                           </div>
+                        </div>
+                        <form action="#" name="registration">
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">First Name</label>
+                              <input type="text"  name="firstname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Last Name</label>
+                              <input type="text"  name="lastname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Email address</label>
+                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Password</label>
+                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                           </div>
+                           <div class="col-md-12 text-center mb-3">
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>
+                           </div>
+                           <div class="col-md-12 ">
+                              <div class="form-group">
+                                 <p class="text-center"><a href="#" id="signin">Already have an account?</a></p>
+                              </div>
+                           </div>
+                            </div>
+                        </form>
+                     </div>
+			</div>
+		</div>
+      </div>   
+
+  <!-- Footer -->
+  {% include 'includes/footer.html'%}
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

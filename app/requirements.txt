@@ -1,0 +1,4 @@
+django
+django-tinymce
+django-widget-tweaks
+mysqlclient

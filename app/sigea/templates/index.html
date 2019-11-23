@@ -1,112 +1,89 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br">
-<head>
-  {% load static %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-  <title>SIGEA - UESPI</title>
+   <title>SIGEA - UESPI</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/index.css' %}" rel="stylesheet">
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-  <!-- Navigation -->
-  <div class="shadow p-3 mb-5 bg-white rounded">
-    {% include 'includes/navbar.html' %}
-  </div>
-
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row justify-content-md-center">
-
-      <!-- Blog Entries Column -->
-      <div class="col-md-8">
-
-        <!-- Blog Post -->
-        <div class="card mb-4 shadow bg-white rounde">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Evento #1</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <hr>
-            Data: 4 de Julho de 2019 <br>
-            Local: CTU <br>
-            Organização: <a href="#">Nome #1</a>
-          </div>
-          <div class="card-footer text-muted">
-            <a href="#" class="btn btn-primary">Pagina &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Blog Post -->
-        <div class="card mb-4 shadow bg-white rounde">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Evento #2</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <hr>
-            Data: 4 de Março de 2019 <br>
-            Local: UFPI <br>
-            Organização: <a href="#">Nome #2</a>
-          </div>
-          <div class="card-footer text-muted">
-            <a href="#" class="btn btn-primary">Pagina &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Blog Post -->
-        <div class="card mb-4 shadow bg-white rounde">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Evento #3</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <hr>
-            Data: 4 de Janeiro de 2019 <br>
-            Local: IFPI <br>
-            Organização: <a href="#">Nome #3</a>
-          </div>
-          <div class="card-footer text-muted">
-            <a href="#" class="btn btn-primary">Pagina &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Pagination -->
-        <ul class="pagination pagination-lg justify-content-center mb-4">
-          <li class="page-item">
-            <a class="page-link" href="#">&larr;</a>
-          </li>
-          <li class="page-item disabled">
-            <a class="page-link" href="#"> &rarr;</a>
-          </li>
-        </ul>
-
-      </div>
-
-      </div>
-
+     <!-- Navigation -->
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        {% include 'includes/navbar.html' %}
     </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+    <main role="main">
 
-  <!-- Footer -->
-  {% include 'includes/footer.html'%}
+      <div class="album py-5 bg-light">
+        <div class="container">
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                  <img class="card-imag-top" src="{% static 'img/teste.png' %}" alt="Card image cap">
+                  <div class="card-body">
+                  <a href="#" target="_blank">
+                    <h1 title="I SINTA - Simpósio de Internacionalização Acadêmica" itemprop="name">I SINTA - Simpósio de Internacionalização Acadêmica</h1>
+                  </a>
+                  <p class="card-text"><small class="text-muted">
+                  Data: 17 - 19 de Feveiro de 2020 <br>
+                  Local: UESPI
+                  </small></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                  <img class="card-imag-top" src="{% static 'img/teste2.jpeg' %}" alt="Card image cap">
+                  <div class="card-body">
+                  <a href="#" target="_blank">
+                    <h1 title="Novembro Afro: A condição da juventude negra e mulheres na atualidade" itemprop="name">Novembro Afro: "A condição da juventude negra e mulheres na atualidade</h1>
+                  </a>
+                   <p class="card-text"><small class="text-muted">
+                    Data: 24 - 26 de Janeiro de 2020 <br>
+                    Local: IFPI Sul
+                 </small></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                  <img class="card-imag-top" src="{% static 'img/teste3.jpg' %}" alt="Card image cap">
+                  <div class="card-body">
+                  <a href="#" target="_blank">
+                    <h1 title="Formação em Analista de RH- Juazeiro/Ba" itemprop="name">Formação em Analista de RH- Juazeiro/Ba</h1>
+                  </a>
+                 <p class="card-text"><small class="text-muted">
+                    Data: 31 de Janeiro de 2020 <br>
+                    Local: CTU
+                 </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-</body>
+    </main>
 
+    <!-- Footer -->
+    {% include 'includes/footer.html'%}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  </body>
 </html>

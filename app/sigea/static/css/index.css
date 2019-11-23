@@ -1,4 +1,32 @@
 
 body {
   background-color: whitesmoke;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.card-imag-top{
+  vertical-align: middle;
+  max-width: 270px;
+  max-height: 250px;
+  margin-top: 40px;
+  
+}
+
+.card{
+  display: inline-block;
+  text-align: center;
+}
+
+.card-body h1{
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .005em;
+  margin: 0;
+  line-height: inherit;
+  color: #1a28e7;
+}
+
+p{
+  text-align: left;
 }

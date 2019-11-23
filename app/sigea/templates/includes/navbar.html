@@ -1,9 +1,10 @@
 {% load staticfiles %}
 
- <nav class="navbar navbar-light">
+ <nav class="navbar navbar-light box-shadow">
     <div class="container">
-      <a href="https://www.uespi.br/site/" title="UESPI"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
-      <a href="/" title="SIGEA"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
-      <a href="/login" title="Login"><img class="organizacao-img" src="{% static 'img/organizacao.png' %}" alt="Organizacao img"></a>
+      <div class="container d-flex justify-content-between">
+        <a href="https://www.uespi.br/site/" title="UESPI"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
+        <a href="/" title="SIGEA"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+      </div>
     </div>
   </nav>

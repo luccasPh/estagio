@@ -21,4 +21,5 @@ app_name = "sicea"
 urlpatterns = [
     path('', views.index, name="index"),
     path('login', views.login, name="login"),
+    path('config', views.config, name="config"),
 ]

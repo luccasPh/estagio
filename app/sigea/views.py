@@ -14,3 +14,10 @@ def login(request):
         request=request,
         template_name="login.html"
     )
+
+def config(request):
+    return render(
+        request=request,
+        template_name="config.html"
+    )
+

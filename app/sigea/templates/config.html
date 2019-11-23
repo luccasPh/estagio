@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SIGEA - Área da Organização</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/config.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+       <a href="/" title="SIGEA"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+       <div class="list-group" id="myList" role="tablist">
+        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#inicio" role="tab">
+          <i class="material-icons">home</i>
+          <span>Inicio</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#apresentacao" role="tab">
+          <i class="material-icons">desktop_windows</i>
+          <span>Apresentação</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#programacao" role="tab">
+          <i class="material-icons">date_range</i>
+          <span>Programação</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#atividades" role="tab">
+          <i class="material-icons">toc</i>
+          <span>Atividades</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#palestrantes" role="tab">
+          <i class="material-icons">person</i>
+          <span>Palestrantes</span>
+        </a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="col-md-9">
+       <h5>Novembro Afro: "A condição da juventude negra e mulheres na atualidade</h5>
+        <p>
+            <a href="#">https://localhost:3000/1234567</a>
+          </p>
+    
+        
+        <div class="clearfix"></div>
+      </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <div class="tab-content">
+          <div class="tab-pane active" id="inicio" role="tabpanel">
+            <br>
+            <h3>Configuração do Evento</h3>
+            <hr>
+            <form>
+              <div class="form-group">
+                <label class="font-weight-bold" for="nome_evento">Nome do evento</label>
+                <input type="text" class="form-control input-tm-1">
+              </div>
+              <div class="form-group">
+                  <label class="font-weight-bold" for="data_evento">Data do evento</label>
+                  <div class='input-group'>
+                    <input type='text' class="datepicker input-tm-2">
+                    <span style="
+                        padding-right: 8px;
+                        padding-left: 8px;
+                        padding-top: 6px;
+                    ">–</span>
+                    <input type='text' class="datepicker input-tm-2">
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold" for="local_evento">Local do evento</label>
+                <input type="text" class="form-control input-tm-1">
+              </div>
+              <div class="form-group">
+                  <label class="font-weight-bold" for="local_evento">Banner do evento</label>
+                  <div class="input-group input-file" name="Fichier1" style="
+                      width: 525px;
+                  ">
+                    <span class="input-group-btn">
+                          <button class="btn btn-primary btn-choose" type="button" style="
+                              margin-right: 4px;
+                          ">Escolher</button>
+                      </span>
+                      <input type="text" class="form-control" placeholder='Selecione o banner' />
+                      <span class="input-group-btn">
+                          <button class="btn btn-warning btn-reset" type="button">Limpa</button>
+                      </span>
+                  </div>
+                </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="apresentacao" role="tabpanel">
+            <br>
+            <h3>Configuração de Apresentação</h3>
+            <hr>
+            <form>
+                <div class="form-group">
+                  <div class="form-group">
+                <label class="font-weight-bold" for="nome_evento">Titulo</label>
+                <input type="text" class="form-control input-tm-1">
+              </div>
+              <div class="form-group">
+                  <label class="font-weight-bold" for="data_evento">Descrição</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                  <label class="font-weight-bold" for="local_evento">Capa da pagina</label>
+                  <i tabindex="0" class="material-icons"  role="button" data-toggle="popover" data-trigger="focus" title="Capa para pagina" data-content="Selecione uma capa para pagina do seu evento, recomenda-se que a imagem seja grande!">live_help</i>
+                  <div class="input-group input-file" name="Fichier1" style="
+                      width: 525px;
+                  ">
+                    <span class="input-group-btn">
+                          <button class="btn btn-primary btn-choose" type="button" style="
+                              margin-right: 4px;
+                          ">Escolher</button>
+                      </span>
+                      <input type="text" class="form-control" placeholder='Selecione uma imagem 1351x525' />
+                      <span class="input-group-btn">
+                          <button class="btn btn-warning btn-reset" type="button">Limpa</button>
+                      </span>
+                  </div>
+                </div>
+                </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="programacao" role="tabpanel">Programação</div>
+          <div class="tab-pane" id="atividades" role="tabpanel">Atividades</div>
+          <div class="tab-pane" id="palestrantes" role="tabpanel">Palestrantes</div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Footer -->
+    {% include 'includes/footer.html'%}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/moment/moment.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-datepicker.pt-BR.js' %}"></script>
+   
+
+    <!-- Custom JavaScript for this template -->
+    <script src="{% static 'js/config.js' %}"></script>
+
+</body>
+
+</html>

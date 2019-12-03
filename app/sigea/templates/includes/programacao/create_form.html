@@ -1,0 +1,26 @@
+{% load widget_tweaks %}
+<form method="POST" id="programacao-create" action="{% url 'sigea:programacao_add' %}">
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-md-5">
+        <label class="font-weight-bold" for="nome">Titulo</label>
+        {% render_field programacao_form.titulo class="form-control" %}
+    </div>
+    <div class="col-md-3">
+        <label class="font-weight-bold" for="data_hora">Data / Horario</label>
+        <div class="form-group">
+            <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                {% render_field programacao_form.data_hora class="form-control datetimepicker-input" data-target="#datetimepicker3" %}
+                    <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker" data-toggle="tooltip" data-placement="top" title="Selecione a data e as horas!">
+                    <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <label class="font-weight-bold" for="atividade">Tipo de Atividade</label>
+        {% render_field programacao_form.atividade class="form-control" %}
+    </div>
+    </div>
+    <button type="submit" class="btn btn-success mb-4">Adicionar</button>
+</form>

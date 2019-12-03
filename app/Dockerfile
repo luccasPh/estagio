@@ -11,7 +11,7 @@ WORKDIR /app
 #MySQL development headers and libraries
 RUN apk update
 RUN apk add python3-dev 
-RUN apk add --no-cache mariadb-dev build-base
+RUN apk add --no-cache mariadb-dev build-base jpeg-dev zlib-dev
 
 #Upgrade pip
 RUN pip install pip -U

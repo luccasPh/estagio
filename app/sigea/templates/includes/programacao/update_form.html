@@ -1,0 +1,36 @@
+{% load widget_tweaks %}
+<form method="POST" id="programacao-update" action="{% url 'sigea:programacao_update' programacao_form.instance.id %}">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">Editar Programação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+     <div class="modal-body">
+           <div class="form-group">
+                <label class="font-weight-bold" for="nome">Titulo</label>
+                {% render_field programacao_form.titulo class="form-control" %}
+            </div>
+           <div class="form-group">
+                <label class="font-weight-bold" for="data_hora">Data / Horario</label>
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                        {% render_field programacao_form.data_hora class="form-control datetimepicker-input" data-target="#datetimepicker4" %}
+                            <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker" data-toggle="tooltip" data-placement="top" title="Selecione a data e as horas!">
+                            <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" for="atividade">Tipo de Atividade</label>
+                {% render_field programacao_form.atividade class="form-control" %}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn btn-secondary" data-dismiss="modal" style="align-self: baseline;">Fechar</button>
+        <button type="submit" class="btn btn-primary mb-4">Salvar</button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+<form method="POST" enctype='multipart/form-data' id="palestrante-create" action="{% url 'sigea:palestrante_add' %}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-5 form-group">
+            <label class="font-weight-bold" for="nome">Nome</label>
+            {% render_field palestrante_form.nome class="form-control" %}
+        </div>
+        <div class="col-md-5 form-group">
+            <label class="font-weight-bold" for="afiliacao">Afiliação</label>
+            {% render_field palestrante_form.afiliacao class="form-control" %}
+        </div>
+    </div>
+    <div class="col-md-5 form-group" style="right: 15px;">
+        <label class="font-weight-bold" for="imagem">Foto</label>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                {% render_field palestrante_form.imagem class="custom-file-input"%}
+                <label class="custom-file-label" for="id_imagem">Selecione uma Foto!</label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success mb-4">Adicionar</button>
+</form>
+

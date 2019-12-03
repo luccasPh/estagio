@@ -72,3 +72,13 @@
       margin-left: -15rem;
     }
   }
+
+h5{
+  font-size: 1.45rem;
+  margin-bottom: auto;
+  margin-top: 15px;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+  content: "Arquivo";
+}

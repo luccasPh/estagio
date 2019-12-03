@@ -2,3 +2,5 @@ django
 django-tinymce
 django-widget-tweaks
 mysqlclient
+Pillow
+django_cleanup

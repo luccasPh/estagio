@@ -3,15 +3,33 @@ $('#myList a').on('click', function (e) {
     $(this).tab('show')
   })
 
-$('.datepicker').datepicker({
-    format: "dd/mm/yyyy",
-    language: "pt-BR",
-    minViewMode: 0,
-    orientation: 'auto',
-    startDate: '+0d',
-    autoclose: true,
-    daysOfWeekDisabled: ['0']
+$(function () {
+	$('#datetimepicker1').datetimepicker({
+		format: 'L',
+		locale: 'pt-BR',
+		minDate:new Date()
+	});
+
+	$('#datetimepicker2').datetimepicker({
+		format: 'L',
+		locale: 'pt-BR',
+		minDate:new Date()
+	});
+
+	$('#datetimepicker3').datetimepicker({
+		locale: 'pt-BR',
+		fromat: 'LTS',
+		
+	});
+
+	$('#datetimepicker4').datetimepicker({
+		locale: 'pt-BR',
+		fromat: 'LTS',
+		
+	});
+	
 });
+
 
 $("#menu-toggle").click(function(e) {
   e.preventDefault();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html lang="pt-BR">
 
 <head>
@@ -14,18 +15,24 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'vendor/bootstrap/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/config.css' %}" rel="stylesheet">
+  <link href="{% static 'css/organizador.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+  {% block javascript %}
+
+  {% endblock %}
 
 </head>
 
 <body>
 
+<main role="main">
   <div class="d-flex" id="wrapper">
-
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
        <a href="/" title="SIGEA"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
@@ -41,10 +48,6 @@
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#programacao" role="tab">
           <i class="material-icons">date_range</i>
           <span>Programação</span>
-        </a>
-        <a class="list-group-item list-group-item-action" data-toggle="list" href="#atividades" role="tab">
-          <i class="material-icons">toc</i>
-          <span>Atividades</span>
         </a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#palestrantes" role="tab">
           <i class="material-icons">person</i>
@@ -102,16 +105,30 @@
                 <input type="text" class="form-control input-tm-1">
               </div>
               <div class="form-group">
-                  <label class="font-weight-bold" for="data_evento">Data do evento</label>
-                  <div class='input-group'>
-                    <input type='text' class="datepicker input-tm-2">
-                    <span style="
-                        padding-right: 8px;
-                        padding-left: 8px;
-                        padding-top: 6px;
-                    ">–</span>
-                    <input type='text' class="datepicker input-tm-2">
-                  </div>
+                <label class="font-weight-bold" for="data_evento">Data do evento</label>
+                <div class="row">
+                    <div class='col-md-2'>
+                        <div class="form-group">
+                          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <i class="material-icons">minimize</i>
+                    <div class='col-md-2'>
+                        <div class="form-group">
+                          <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+                                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
               </div>
               <div class="form-group">
                 <label class="font-weight-bold" for="local_evento">Local do evento</label>
@@ -140,7 +157,7 @@
             <h3>Configuração de Apresentação</h3>
             <hr>
             <form>
-                <div class="form-group">
+              <div class="form-group">
                   <div class="form-group">
                 <label class="font-weight-bold" for="nome_evento">Titulo</label>
                 <input type="text" class="form-control input-tm-1">
@@ -151,7 +168,7 @@
               </div>
               <div class="form-group">
                   <label class="font-weight-bold" for="local_evento">Capa da pagina</label>
-                  <i tabindex="0" class="material-icons"  role="button" data-toggle="popover" data-trigger="focus" title="Capa para pagina" data-content="Selecione uma capa para pagina do seu evento, recomenda-se que a imagem seja grande!">live_help</i>
+                  <i tabindex="0" class="material-icons"  role="button" data-toggle="popover" data-trigger="hover" title="Capa para pagina" data-content="Selecione uma capa para pagina do seu evento, recomenda-se que a imagem seja grande!">live_help</i>
                   <div class="input-group input-file" name="Fichier1" style="
                       width: 525px;
                   ">
@@ -169,16 +186,56 @@
                 </div>
             </form>
           </div>
-          <div class="tab-pane" id="programacao" role="tabpanel">Programação</div>
-          <div class="tab-pane" id="atividades" role="tabpanel">Atividades</div>
-          <div class="tab-pane" id="palestrantes" role="tabpanel">Palestrantes</div>
+          <div class="tab-pane" id="programacao" role="tabpanel">
+           <br>
+            <h3>Configuração de Programação e Atividades</h3>
+            <hr>
+              {% include 'includes/programacao/create_form.html' %}
+            <table class="table table-striped" id="programacao-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Titulo</th>
+                      <th scope="col">Data / Hora</th>
+                      <th scope="col">Atividade</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% include 'includes/programacao/table.html' %}
+                  </tbody>
+              </table>
+          </div>
+          <div class="tab-pane" id="palestrantes" role="tabpanel">
+            <br>
+            <h3>Configuração de Palestrantes</h3>
+            <hr>
+             {% include 'includes/palestrante/create_form.html' %}
+            <table class="table table-striped" id="palestrante-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Foto</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Afiliação</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% include 'includes/palestrante/table.html' %}
+                  </tbody>
+            </table>
+          </div>
         </div>
       </div>
-      
     </div>
-    <!-- /#page-content-wrapper -->
+    <div class="modal fade modal-organizador">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
+        </div>
+      </div>
+    </div>
   </div>
+</main>
   <!-- /#wrapper -->
 
   <!-- Footer -->
@@ -186,14 +243,21 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/moment/moment.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap-datepicker.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap-datepicker.pt-BR.js' %}"></script>
-   
-
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js'></script>
+    
     <!-- Custom JavaScript for this template -->
-    <script src="{% static 'js/config.js' %}"></script>
+    <script src="{% static 'js/organizador.js' %}"></script>
+    <script src="{% static 'js/programacao.js' %}"></script>
+    <script src="{% static 'js/palestrante.js' %}"></script>
+
+    <script>
+      bsCustomFileInput.init()
+    </script>
 
 </body>
 

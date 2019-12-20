@@ -74,11 +74,49 @@
   }
 
 h5{
-  font-size: 1.45rem;
+  font-size: 1.75rem;
   margin-bottom: auto;
-  margin-top: 15px;
 }
 
 .custom-file-input ~ .custom-file-label::after {
   content: "Arquivo";
+}
+
+.jumbotron {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: .125rem;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.pagination-detail{
+  display:none;
+}
+
+.card-imag-top{
+  vertical-align: middle;
+  max-width: 270px;
+  max-height: 250px;
+  margin-top: 40px;
+  
+}
+
+.card{
+  margin: 50px;
+  inline-size: -webkit-fill-available;
+  max-inline-size: 350px;
+  display: inline-block;
+  text-align: center;
+}
+
+.card-body h1{
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .005em;
+  margin: 0;
+  line-height: inherit;
+  color: #1a28e7;
 }

@@ -1,0 +1,38 @@
+{% load static %}
+{% if eventos %}
+<div class="card-columns">
+    {% for evento in eventos %}
+        <div class="card text-center shadow p-3 mb-5 bg-white rounded">
+            {% if evento.banner.url != None %}
+                <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+                <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}" target="_blank">
+                    <h5 class="card-title">{{evento.titulo}}</h5>
+                </a>
+                <p class="card-text"><small class="text-muted">
+                    {% if evento.data_inicio == evento.data_fim%}
+                        {{evento.data_fim|date:"d F Y" }} <br>
+                    {% else %}
+                        {{evento.data_inicio|date:'d' }} - {{evento.data_fim|date:"d F Y" }}<br>
+                    {% endif %}
+                    {{evento.local}}
+                </small></p>
+                <a href="{% url 'sigea:evento_config' evento.id%}" 
+                    class="btn btn-warning btn-sm"
+                    data-toggle="tooltip" data-placement="top" title="Editar evento">
+                    <i class="material-icons">edit</i>
+                </a>
+                <button type="button" 
+                    class="btn btn-danger btn-sm evento-confirm"
+                    data-toggle="tooltip" data-placement="top" title="Excluir evento" 
+                    data-url="{% url 'sigea:evento_delete' evento.id %}"><i class="material-icons">delete</i>
+                </button>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+{% else %}
+<h5> Você não possui eventos cadastrados, cadastre utilizado o menu da organização.</h5>
+{% endif %}

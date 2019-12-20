@@ -1,19 +1,25 @@
 {% for programacao in programacao %}
 <tr>
-    <td style="vertical-align: middle;">{{programacao.titulo}}</td>
+    <td style="vertical-align: middle; width: 324px;">{{programacao.titulo}}</td>
+    {% if programacao.palestrante == None%}
+        <td style="vertical-align: middle;"></td>
+    {% else %}
+        <td style="vertical-align: middle;">{{programacao.palestrante}}</td>
+    {% endif %}
+    <td style="vertical-align: middle;">{{programacao.tipo}}</td>
+    <td style="vertical-align: middle;">{{programacao.get_inscrever_display}}</td>
     <td style="vertical-align: middle;">{{programacao.data_hora|date:'d/m/Y - H:i'}}</td>
-    <td style="vertical-align: middle;">{{programacao.get_atividade_display}}</td>
     <td>
         <button type="button" 
                 class="btn btn-warning btn-sm programacao-update-form"
                 data-toggle="tooltip" data-placement="top" title="Editar programação" 
-                data-url="{% url 'sigea:programacao_update' programacao.id %}"><i class="material-icons">edit</i>
+                data-url="{% url 'sigea:programacao_update' evento.id programacao.id %}"><i class="material-icons">edit</i>
         </button>
 
         <button type="button" 
                 class="btn btn-danger btn-sm programacao-delete-form"
                 data-toggle="tooltip" data-placement="top" title="Excluir programação" 
-                data-url="{% url 'sigea:programacao_delete' programacao.id %}"><i class="material-icons">delete</i>
+                data-url="{% url 'sigea:programacao_delete' evento.id programacao.id %}"><i class="material-icons">delete</i>
         </button>
     </td>
 </tr>

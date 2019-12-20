@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'sigea.apps.SigeaConfig',
 
     'widget_tweaks',
-    'django_cleanup.apps.CleanupConfig'
+    'django_cleanup.apps.CleanupConfig',
+    'tinymce'
 
 ]
 
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'pt-BR'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -144,4 +145,5 @@ CACHES = {
 }
 
 AUTH_USER_MODEL = 'sigea.CustomUser'
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'

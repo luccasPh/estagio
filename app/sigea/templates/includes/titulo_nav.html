@@ -1,0 +1,5 @@
+{% load static %}
+{% load widget_tweaks %}
+<div class="col-md-11">
+    <a  target="_blank" rel="noopener noreferrer" title="Pagian do Evento" href="{% url 'sigea:evento_pagina' evento.id evento.slug %}"><h5>{{evento.titulo}}</h5></a>
+</div>

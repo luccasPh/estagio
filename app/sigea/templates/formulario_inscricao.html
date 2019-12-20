@@ -1,0 +1,230 @@
+<!doctype html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/icon.png' %}">
+    <title>SIGEA - Inscrição</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/inscricao_pagina.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}"><img class="d-block mx-auto mb-4" src="{{evento.banner.url}}" alt=""></a>
+        <h2>{{evento.titulo}}</h2>
+         <p class="lead">Formulario de Inscrição</p>
+      </div>
+      <div class="row">
+        <div class="col-md-8 order-md-1" style="left: 200px;">
+            <div class="jumbotron">
+                <form  method="POST" action="{% url 'sigea:inscricao' evento.id %}" >
+                    {% csrf_token %}
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="font-weight-bold" for="nome">Nome:</label>
+                        {% render_field formulario.nome placeholder="Digite seu Nome Completo." class="form-control" %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="font-weight-bold" for="nome">CPF:</label>
+                        {% render_field formulario.cpf placeholder="Digite seu CPF." class="form-control cpf" %}
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                          <label class="font-weight-bold" for="nome">Email:</label>
+                          {% render_field formulario.email placeholder="Digite seu Email." class="form-control" %}
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label class="font-weight-bold" for="nome">Telefone:</label>
+                          {% render_field formulario.telefone placeholder="Digite seu Telefone." class="form-control phone_with_ddd" %}
+                      </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-md-3 mb-3">
+                          <label class="font-weight-bold" for="nome">CEP:</label>
+                          <input class="form-control" placeholder="Digite seu CEP." name="cep" type="text" id="cep" value="" size="10" maxlength="9"onblur="pesquisacep(this.value);" /></input>
+                      </div>
+                      <div class="col-md-9 mb-3">
+                          <label class="font-weight-bold" for="nome">Endereço:</label>
+                          {% render_field formulario.endereco placeholder="Digite seu Endereço." class="form-control" %}
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="font-weight-bold" for="nome">Faculdade:</label>
+                        {% render_field formulario.faculdade placeholder="Opcional." class="form-control" %}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="font-weight-bold" for="nome">Curso:</label>
+                        {% render_field formulario.curso placeholder="Opcional." class="form-control" %}
+                    </div>
+                    </div>
+                    <hr class="mb-4">
+                    <h4 class="mb-3">Atividades</h4>
+                    <h7 class="mb-3">Selecione as atividades que gostaria de se inscrever</h7>
+
+                    <div class="d-block my-3" style="margin-left: 12px;">
+                        <table>
+                          <thead>
+                            <tr>
+                              <td  style="padding-left: 12px;">Atividade</td>
+                              <td  style="padding-left: 12px;">Data / Horario</td>
+                              <td  style="padding-left: 12px;">Tipo</td>
+                            </tr>
+                          </thead>    
+                          {% for pk, choice in formulario.atividade.field.widget.choices %}
+                          <tr>
+                            <td>
+                              <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input" {% for m2moption in model.m2moptions.all %}{% if option.pk == pk %}checked="checked"{% endif %}{% endfor %} type="checkbox" id="id_atividade_{{ forloop.counter0 }}" value="{{ pk }}" name="atividade" />
+                                <label class="custom-control-label" for="id_atividade_{{ forloop.counter0 }}">{{choice}}</label>
+                              </div>
+                            </td>
+                            {% for atv in atividades %}
+                              {% if atv.pk == pk %}
+                                <td style="padding-left: 12px;">
+                                  {{atv.data_hora|date:"d/m - H:i"}}
+                                </td>
+                                <td style="padding-left: 12px;">
+                                  {{atv.tipo}}
+                                </td>
+                              {% endif %}
+                            {% endfor %}
+                          </tr>
+                          {% endfor %}                
+                        </table>
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; <script> document.write(new Date().getFullYear()); </script> DTIC - UESPI</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
+
+    <!-- Pagina core JavaScript -->
+    <script src="{% static 'js/inscricao_pagina.js' %}"></script>
+
+    {% if formulario.errors %}
+      {% for field in formulario %}
+          {% for error in field.errors %}
+              <script>
+                $.notify({
+                    // options
+                    message: '{{ error|escape }}',
+                    },{
+                    // settings
+                    type: 'danger',
+                    timer: 500,
+                    placement: {
+                      from: "top",
+                      align: "center"
+                    },
+
+                    animate: {
+                      enter: 'animated bounceInDown',
+                      exit: 'animated bounceOutUp'
+                    },
+                });
+              </script>
+          {% endfor %}
+      {% endfor %}
+      {% for error in formulario.non_field_errors %}
+            <script>
+              $.notify({
+                  // options
+                  message: '{{ error|escape }}',
+                  },{
+                  // settings
+                  type: 'danger',
+                  timer: 500,
+                  placement: {
+                    from: "top",
+                    align: "center"
+                  },
+
+                  animate: {
+                    enter: 'animated bounceInDown',
+                    exit: 'animated bounceOutUp'
+                  },
+              });
+            </script>
+      {% endfor %}
+    {% endif %}
+
+     {% if messages %}
+      {% for message in messages %}
+          {% if message.tags == 'info'%}
+                <script>
+                  $.notify({
+                      // options
+                      message: '{{message}}',
+                      },{
+                      // settings
+                      type: 'success',
+                      timer: 500,
+                      placement: {
+                        from: "top",
+                        align: "center"
+                      },
+
+                      animate: {
+                        enter: 'animated bounceInDown',
+                        exit: 'animated bounceOutUp'
+                      },
+                  });
+                </script>
+
+          {% elif message.tags == 'error'%}
+                <script>
+                  $.notify({
+                      // options
+                      message: '{{message}}',
+                      },{
+                      // settings
+                      type: 'danger',
+                      timer: 500,
+                      placement: {
+                        from: "top",
+                        align: "center"
+                      },
+
+                      animate: {
+                        enter: 'animated bounceInDown',
+                        exit: 'animated bounceOutUp'
+                      },
+                  });
+                </script>
+          {% endif %}
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

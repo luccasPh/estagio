@@ -1,0 +1,9 @@
+{% if inscricoes %}
+    {% load widget_tweaks %}
+    <br>
+    {% if atividade.id %}
+        <a href="{% url 'sigea:inscricao_pdf' evento.id atividade.id %}" class="btn btn-primary active" aria-pressed="true" target="_blank">Gera PDF</a>
+    {% else %}
+        <a href="{% url 'sigea:inscricao_pdf' evento.id '0' %}" class="btn btn-primary active" aria-pressed="true" target="_blank">Gera PDF</a>
+    {% endif %}
+{% endif %}

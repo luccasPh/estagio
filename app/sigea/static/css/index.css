@@ -2,6 +2,8 @@
 body {
   background-color: whitesmoke;
   font-family: 'Open Sans', sans-serif;
+  border-top: solid 3px #2268B2;
+
 }
 
 .card-imag-top{
@@ -13,6 +15,8 @@ body {
 }
 
 .card{
+  inline-size: -webkit-fill-available;
+  max-inline-size: 350px;
   display: inline-block;
   text-align: center;
 }
@@ -29,4 +33,9 @@ body {
 
 p{
   text-align: left;
+}
+
+.navbar{
+  padding-top: 0px;
+  padding-bottom: 0px;
 }

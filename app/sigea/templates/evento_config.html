@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+  <link rel="icon" href="{% static 'img/icon.png' %}">
+  <title>SIGEA - Área da Organização</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap-table.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <script src="https://cdn.tiny.cloud/1/zqbmsqau48wjzwbk6ykd64d8enzj232tnec3h8tzlqn0x97q/tinymce/5/tinymce.min.js"></script>
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/evento_config.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+       <a href="/" title="SIGEA"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+       <div class="list-group" id="myList" role="tablist">
+        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#inicio" role="tab">
+          <i class="material-icons">home</i>
+          <span>Inicio</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#apresentacao" role="tab">
+          <i class="material-icons">desktop_windows</i>
+          <span>Apresentação</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#palestrantes" role="tab">
+          <i class="material-icons">person</i>
+          <span>Palestrantes</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#programacao" role="tab">
+          <i class="material-icons">date_range</i>
+          <span>Programação</span>
+        </a>
+        <a class="list-group-item list-group-item-action" data-toggle="list" href="#inscricoes " role="tab">
+         <i class="material-icons">list_alt</i>
+          <span>Inscriçoes</span>
+        </a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="config-nav">
+        <div id="titulo-nav" style="width: 800px;">
+          {% include 'includes/titulo_nav.html' %}
+        </div>
+        {% include 'includes/drop_organizacao.html' %}
+      </nav>
+
+      <div class="container-fluid">
+        <div class="tab-content">
+          <div class="tab-pane active" id="inicio" role="tabpanel">
+            <form method="POST" enctype='multipart/form-data' id="inicio-form" action="{% url 'sigea:evento_config' evento.id %}">
+              {% csrf_token %}
+              <br>
+              <h3>EVENTO</h3>
+              <hr>
+              <div class="jumbotron">
+                  <div class="box inscricao ng-scope">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <label class="font-weight-bold" for="nome">Titulo:</label>
+                              {% render_field evento_config_form.titulo placeholder="Titulo do Evento." class="form-control" %}
+                          </div>
+                          <div class="col-md-6">
+                              <label class="font-weight-bold" for="atividade">Local:</label><br>
+                              {% render_field evento_config_form.local placeholder="Local do Evento." class="form-control" %}
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-top: 20px;">
+                          <label class="font-weight-bold" for="data_hora">Datas:</label>
+                          <div class="row" style="margin-right: 300px;">
+                              <div class='col-md-4'>
+                                  <div class="form-group" >
+                                  <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                          {% render_field evento_config_form.data_inicio placeholder="Inicio" class="form-control datetimepicker-input" data-target="#datetimepicker1" style="text-align: center;" %}
+                                          <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                              <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <i class="material-icons">minimize</i>
+                              <div class='col-md-4'>
+                                  <div class="form-group">
+                                  <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                          {% render_field evento_config_form.data_fim placeholder="Fim" class="form-control datetimepicker-input" data-target="#datetimepicker2" style="text-align: center;" %}
+                                          <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                              <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>     
+                      </div>
+                  </div>
+              </div>
+              <div id="banner-form">
+                {% include 'includes/banner_form.html' %}
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="apresentacao" role="tabpanel">
+            <form method="POST" enctype='multipart/form-data' id="capa-form" action="{% url 'sigea:evento_config' evento.id %}">
+              {% csrf_token %}
+              <div>
+                  <br>
+                  <h3>APRESENTAÇÃO</h3>
+                  <hr>
+                  <div id="escodidas">
+                    {% include 'includes/escodidas.html' %}
+                  </div>
+                  <div class="jumbotron">
+                    <div class="box inscricao ng-scope">
+                      <div class="form-group">
+                          <label class="font-weight-bold" for="data_evento">Descrição sobre o evento:</label>
+                          {% render_field evento_config_form.sobre %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="jumbotron">
+                    <div class="box inscricao ng-scope">
+                      <div class="form-group">
+                          <label class="font-weight-bold" for="local_evento">Capa para pagina:</label>
+                          <i id="popover" tabindex="0" class="material-icons"  role="button" data-toggle="popover" data-trigger="hover" title="Capa para pagina" data-content="Selecione uma capa para pagina do seu evento, recomenda-se que a imagem seja grande!">live_help</i>
+                          <br>
+                          <div id="capa-form">
+                            {% include 'includes/capa_form.html' %}
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-success mb-4"><i class="material-icons" style="vertical-align: bottom;">
+                    save</i>
+                    Salvar Modificaçoes
+                  </button>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="palestrantes" role="tabpanel">
+            <br>
+            <h3>PALESTRANTES</h3>
+            <hr>
+            <form method="POST" enctype='multipart/form-data' id="palestrante-create" action="{% url 'sigea:palestrante_add' evento.id %}">
+              {% csrf_token %}
+              <div class="jumbotron">
+                <div class="box inscricao ng-scope">
+                  {% include 'includes/palestrante/create_form.html' %}
+                </div>
+              </div>
+            </form>
+            <div class="jumbotron">
+              <div class="box inscricao ng-scope">
+                <table 
+                  class="table table-sm table-striped" 
+                  id="palestrante-table"
+                  class="table table-striped" 
+                  data-toggle="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">FOTO</th>
+                          <th scope="col">NOME</th>
+                          <th scope="col">AFILIAÇÃO</th>
+                          <th>OPÇÕES</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% include 'includes/palestrante/table.html' %}
+                      </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="programacao" role="tabpanel">
+           <br>
+            <h3>PROGRAMAÇÃO E ATIVIDADES</h3>
+            <hr>
+              <form method="POST" id="programacao-create" action="{% url 'sigea:programacao_add' evento.id %}">
+                {% csrf_token %}
+                <div class="jumbotron">
+                  <div class="box inscricao ng-scope">
+                    <div id="update-create">
+                      {% include 'includes/programacao/create_form.html' %}
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="jumbotron">
+                <div class="box inscricao ng-scope">
+                  <table 
+                    id="programacao-table"
+                    class="table table-sm table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th data-field="titulo">TITULO</th>
+                            <th data-field="palestrante">PALESTRANTE</th>
+                            <th data-field="tipo">TIPO</th>
+                            <th data-field="inscricao">INSCRIÇÃO</th>
+                            <th data-field="data-hora">DATA/HORA</th>
+                            <th data-field="opcoes">OPÇÕES</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% include 'includes/programacao/table.html' %}
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="inscricoes" role="tabpanel">
+              <br>
+                <h3>INSCRIÇOES</h3>
+                <hr>
+                <div class="jumbotron">
+                    <div class="box inscricao ng-scope">
+                      <form method="POST" id="filtro-form" action="{% url 'sigea:inscricao_filter' evento.id %}">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-md-4" id="area-filtro">
+                              {% include 'includes/filtro_form.html'%}
+                            </div>
+                            <div class="col">
+                              <button type="submit" class="btn btn-success mb-4"><i class="material-icons" style="vertical-align: bottom;">
+                                filter_list
+                                </i>Filtra Inscriçoes</button>
+                            </div>
+                            <div class="col" style="left: 160px;" id="total-inscricao">
+                              {% include 'includes/total_inscricao.html' %}
+                            </div>
+                          </div>
+                        </form>
+                        <div id="inscricoes-table">
+                          {% include 'includes/inscricoes_tabela.html' %}
+                        </div>
+                        <div id="gera-pdf">
+                          <a href="{% url 'sigea:inscricao_pdf' evento.id '0' %}" class="btn btn-primary active" aria-pressed="true" target="_blank">
+                          <i class="material-icons" style="vertical-align: bottom;">
+                                picture_as_pdf
+                                </i>Gera PDF</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          
+           <!-- Footer -->
+          <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; <script> document.write(new Date().getFullYear()); </script> DTIC - UESPI</p>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#">Privacy</a></li>
+              <li class="list-inline-item"><a href="#">Terms</a></li>
+              <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+          </footer>
+
+      </div>
+      <div class="modal fade modal-organizador">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      {% for inscricao in inscricoes %}
+        <div class="modal fade" id="id_{{inscricao.id_cpf}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{inscricao.nome}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table table-sm">
+                  <tbody>
+                      <tr>
+                          <td class="h6"><strong>CPF:</strong></td>
+                          <td> </td>
+                          <td>{{inscricao.cpf}}</td>
+                      </tr>
+                      <tr>
+                          <td class="h6"><strong>Email:</strong></td>
+                          <td> </td>
+                          <td>{{inscricao.email}}</td>
+                      </tr>
+                        <tr>
+                          <td class="h6"><strong>Telefone:</strong></td>
+                          <td> </td>
+                          <td>{{inscricao.telefone}}</td>
+                      </tr>
+                        <tr>
+                          <td class="h6"><strong>Endereço:</strong></td>
+                          <td> </td>
+                          <td>{{inscricao.endereco}}</td>
+                      </tr>
+                      {% if inscricao.faculdade %}
+                      <tr>
+                          <td class="h6"><strong>Faculdade:</strong></td>
+                          <td> </td>
+                          <td>{{inscricao.faculdade}}</td>
+                      </tr>
+                      {% endif %}
+                      {% if inscricao.curso %}
+                      <tr>
+                          <td class="h6"><strong>Curso:</strong></td>
+                          <td> </td>
+                          <td>{{inscricao.curso}}</td>
+                      </tr>
+                      {% endif %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/moment/moment.js' %}"></script>
+    <script src="{% static 'vendor/moment/pt-br.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-table.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Custom JavaScript for this template -->
+    <script src="{% static 'js/evento_config.js' %}"></script>
+    <script src="{% static 'js/programacao.js' %}"></script>
+    <script src="{% static 'js/palestrante.js' %}"></script>
+    <script src="{% static 'js/filtro.js' %}"></script>
+
+    <script>
+      $("#popover").popover({ trigger: "hover" });
+
+      tinymce.init({
+        selector:'textarea',
+        resize: false,
+        width: "846",
+        height: "500",
+        language_url : '{% static "vendor/tinymce/langs/pt_BR.js" %}',
+        language: 'pt_BR',
+        plugins: 'fullpage paste importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+        imagetools_cors_hosts: ['picsum.photos'],
+        menubar: 'file edit view insert format tools table help',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  save | insertfile image media template link anchor | ltr rtl',
+        autosave_ask_before_unload: true,
+        autosave_interval: "30s",
+        autosave_prefix: "{path}{query}-{id}-",
+        autosave_restore_when_empty: false,
+        autosave_retention: "2m",
+        image_advtab: true,
+        content_css: [
+          '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+          '//www.tiny.cloud/css/codepen.min.css'
+        ],
+        link_list: [
+          { title: 'My page 1', value: 'http://www.tinymce.com' },
+          { title: 'My page 2', value: 'http://www.moxiecode.com' }
+        ],
+        image_list: [
+          { title: 'My page 1', value: 'http://www.tinymce.com' },
+          { title: 'My page 2', value: 'http://www.moxiecode.com' }
+        ],
+        image_class_list: [
+          { title: 'None', value: '' },
+          { title: 'Some class', value: 'class-name' }
+        ],
+        importcss_append: true,
+        file_picker_callback: function (callback, value, meta) {
+        /* Provide file and text for the link dialog */
+        if (meta.filetype === 'file') {
+          callback('https://www.google.com/logos/google.jpg', { text: 'My text' });
+        }
+      
+        /* Provide image and alt text for the image dialog */
+        if (meta.filetype === 'image') {
+          callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+        }
+      
+        /* Provide alternative source and posted for the media dialog */
+        if (meta.filetype === 'media') {
+          callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+          }
+        },
+        templates: [
+          { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+          { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+          { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+        ],
+        template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+        template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+        image_caption: true,
+        quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+        noneditable_noneditable_class: "mceNonEditable",
+        toolbar_drawer: 'sliding',
+        contextmenu: "link image imagetools table",
+      });
+    </script>
+  
+  {% if messages %}
+   {% for message in messages %}
+      {% if message.tags == 'info'%}
+            <script>
+               $.notify({
+                  // options
+                  message: '{{message}}',
+                  },{
+                  // settings
+                  type: 'success',
+                  timer: 500,
+                  placement: {
+                     from: "top",
+                     align: "center"
+                  },
+
+                  animate: {
+                     enter: 'animated bounceInDown',
+                     exit: 'animated bounceOutUp'
+                  },
+               });
+            </script>
+      {% elif message.tags == 'error'%}
+            <script>
+               $.notify({
+                  // options
+                  message: '{{message}}',
+                  },{
+                  // settings
+                  type: 'danger',
+                  timer: 500,
+                  placement: {
+                     from: "top",
+                     align: "center"
+                  },
+
+                  animate: {
+                     enter: 'animated bounceInDown',
+                     exit: 'animated bounceOutUp'
+                  },
+               });
+            </script>
+      {% endif %}
+   {% endfor %}
+{% endif %}
+
+</body>
+
+</html>

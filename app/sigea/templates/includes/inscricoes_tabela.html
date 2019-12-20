@@ -1,0 +1,29 @@
+{% load static %}
+<link href="{% static 'vendor/bootstrap/css/bootstrap-table.min.css' %}" rel="stylesheet">
+<table 
+  class="table table-striped" 
+  data-toggle="table"
+  data-pagination="true"
+  data-page-number="1"
+  data-locale="pt-BR">
+  <thead>
+    <tr>
+      <th>CPF</th>
+      <th>NOME</th>
+      <th>EMAIL</th>
+        <th>DATA INSCRIÇÃO</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for inscricao in inscricoes %}
+    <tr>
+        <td style="col-md-2 vertical-align: middle;"><a href="#" data-toggle="modal" data-target="#id_{{inscricao.id_cpf}}">{{inscricao.cpf}}</a></td>
+        <td style="vertical-align: middle;">{{inscricao.nome}}</td>
+        <td style="vertical-align: middle;">{{inscricao.email}}</td>
+        <td style="vertical-align: middle;">{{inscricao.data_inscricao}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script src="{% static 'vendor/bootstrap/js/bootstrap-table.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap-table-pt-BR.min.js' %}"></script>

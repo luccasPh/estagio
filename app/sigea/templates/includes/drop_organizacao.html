@@ -1,0 +1,71 @@
+{% load widget_tweaks %}
+<div class="btn-group">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" title="Organização" aria-expanded="false">
+      <i class="material-icons" style="vertical-align: text-top;">
+      assignment_ind
+      </i>
+      {{user.nome}}
+   </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-evento">Criar novo evento</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Editar organização</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="{% url 'sigea:logout'%}">Sair</a>
+  </div>
+</div>
+<div class="modal fade" id="modal-evento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="POST" action="{% url 'sigea:evento_add' %}">
+          {% csrf_token %}
+          <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel" style="margin-left: auto;font-weight: bold;">Criar Evento</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label class="font-weight-bold" for="nome">Titulo</label>
+                {% render_field novo_evento_form.titulo placeholder="Titulo do evento" class="form-control" %}
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold" for="data_hora">Data</label>
+                <div class="row">
+                  <div class='col-md-5'>
+                      <div class="form-group">
+                        <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                              {% render_field novo_evento_form.data_inicio placeholder="Inicio" class="form-control datetimepicker-input" data-target="#datetimepicker3" %}
+                              <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <i class="material-icons">minimize</i>
+                  <div class='col-md-5'>
+                      <div class="form-group">
+                        <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                              {% render_field novo_evento_form.data_fim placeholder="Fim" class="form-control datetimepicker-input" data-target="#datetimepicker4" %}
+                              <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="material-icons">date_range</i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>     
+              </div>
+              <div class="form-group">
+                  <label class="font-weight-bold" for="atividade">Local</label>
+                  {% render_field novo_evento_form.local placeholder="Local do evento" class="form-control" %}
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-success">Criar</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{% load static %}
+{% for evento in eventos %}
+<div class="col-md-4">
+    <div class="card mb-4 box-shadow text-center shadow p-3 mb-5 bg-white rounded">
+        <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
+        <div class="card-body" >
+            <h5 class="card-title">
+                <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}" target="_blank">{{evento.titulo}}</a>
+            </h5>
+            <p class="card-text"><small class="text-muted" style="color: #2b2c2d!important;">
+                {% if evento.data_inicio == evento.data_fim%}
+                   {{evento.data_fim|date:"d F Y" }} <br>
+                {% else %}
+                   {{evento.data_inicio|date:'d' }} - {{evento.data_fim|date:"d F Y" }}<br>
+                {% endif %}
+                {{evento.local}}
+            </small></p>
+        </div>
+    </div>
+</div>
+{% endfor %}

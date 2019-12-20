@@ -1,19 +1,19 @@
 {% for palestrante in palestrante %}
 <tr>
-    <td><img class="rounded-circle" src="{{palestrante.imagem.url}}" alt="Generic placeholder image" width="77" height="80"></td>
+    <td><img class="rounded-circle" src="{{palestrante.imagem.url}}" alt="Generic placeholder image" width="70" height="70"></td>
     <td style="vertical-align: middle;">{{palestrante.nome}}</td>
     <td style="vertical-align: middle;">{{palestrante.afiliacao}}</td>
     <td style="vertical-align: middle;">
         <button type="button" 
                 class="btn btn-warning btn-sm palestrante-update-form"
                 data-toggle="tooltip" data-placement="top" title="Editar programação" 
-                data-url="{% url 'sigea:palestrante_update' palestrante.id %}"><i class="material-icons">edit</i>
+                data-url="{% url 'sigea:palestrante_update' evento.id palestrante.id %}"><i class="material-icons">edit</i>
         </button>
 
         <button type="button" 
                 class="btn btn-danger btn-sm palestrante-delete-form"
                 data-toggle="tooltip" data-placement="top" title="Excluir programação" 
-                data-url="{% url 'sigea:palestrante_delete' palestrante.id %}"><i class="material-icons">delete</i>
+                data-url="{% url 'sigea:palestrante_delete' evento.id palestrante.id %}"><i class="material-icons">delete</i>
         </button>
     </td>
 </tr>

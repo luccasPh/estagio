@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+  <link rel="icon" href="{% static 'img/icon.png' %}">
+  <title>{{evento.titulo}}</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/evento_pagina.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+    <div class="shadow-sm p-2 mb-2 bg-white rounded">
+         <nav class="navbar navbar-light box-shadow">
+          <div class="container" style="margin-left: 161px;margin-right: 200px;">
+            <a href="https://www.uespi.br/site/" title="Universidade Estadual do Piauí"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
+            <a href="/" title="Sistema de Gerenciamento de Eventos Acadamecios"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+          </div>
+        </nav>
+    </div>
+
+  <!-- Baner -->
+      <div class="page-baner" id="baner" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('{{evento.capa.url}}');">
+        <div class="carousel-caption" style="top: 315px;">
+          <div class="col-xs-12 center-block">
+            <div class="titulo">
+              <h1>{{evento.titulo}}</h1>
+            </div>
+            <div class="local data" id="locais_datas">
+              {% if evento.data_inicio and evento.data_fim%}
+              <h6>
+              {% if evento.data_inicio == evento.data_fim%}
+                  {{evento.data_fim}} <br>
+              {% else %}
+                  {{evento.data_inicio|date:'d' }} á {{evento.data_fim}}<br>
+              {% endif %}<br>
+              </h6>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--
+      -->
+
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container">
+        {% if sobre %}
+        <div class="jumbotron" style="margin-top: 100px;">
+          <div class="box inscricao ng-scope">
+            <div class="text-center">
+            <h3 class="with-subtitle">Sobre o Evento</h3>
+            <p class="subtitle"></p>
+          </div>
+            <div style="margin-right: 100px; margin-left: 100px; margin-top: 30px;">
+              {{evento.sobre|safe}}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if programacoes %}
+        <div class="jumbotron">
+          <div class="box inscricao ng-scope">
+            <div class="text-center">
+              <h3 class="with-subtitle">Programação</h3>
+              <p class="subtitle"></p>
+            </div>
+              {% regroup programacoes by data_hora|date:"d F Y" as programacoes_by_day %}
+              <section id="tabs" class="project-tab">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <nav>
+                                  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                      {% for programacao in programacoes_by_day %}
+                                          {% if forloop.counter == 1 %}
+                                              <a class="nav-item nav-link active" id="{{forloop.counter}}-tab" data-toggle="tab" href="#data-{{forloop.counter}}" role="tab" aria-controls="{{forloop.counter}}" aria-selected="true">{{programacao.grouper}}</a>
+                                          {% else %}
+                                              <a class="nav-item nav-link" id="{{forloop.counter}}-tab" data-toggle="tab" href="#data-{{forloop.counter}}" role="tab" aria-controls="{{forloop.counter}}" aria-selected="false">{{programacao.grouper}}</a>
+                                          {% endif %}
+                                      {% endfor %}
+                                  </div>
+                              </nav>
+                              <div class="tab-content" id="nav-tabContent">
+                                  {% for programacao in programacoes_by_day %}
+                                      {% if forloop.counter == 1 %}
+                                          <div class="tab-pane fade show active" id="data-{{forloop.counter}}" role="tabpanel" aria-labelledby="{{forloop.counter}}-tab">
+                                              <table class="table table-hover" cellspacing="0">
+                                                  <thead>
+                                                  <tr>
+                                                    <th scope="col">TITULO</th>
+                                                    <th scope="col">PALESTRANTE</th>
+                                                    <th scope="col">TIPO</th>
+                                                    <th scope="col">HORARIO</th>
+                                                  </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      {% for prog in programacao.list%}
+                                                          <tr>
+                                                              <td>{{prog.titulo}}</td>
+                                                              {% if prog.palestrante == None%}
+                                                                  <td style="vertical-align: middle;"></td>
+                                                              {% else %}
+                                                                  <td style="vertical-align: middle;">{{prog.palestrante}}</td>
+                                                              {% endif %}
+                                                              <td>{{prog.tipo}}</td>
+                                                              <td>{{prog.data_hora|date:"H:i" }}</td>
+                                                          </tr>
+                                                      {% endfor %}
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      {% else %}
+                                          <div class="tab-pane fade" id="data-{{forloop.counter}}" role="tabpanel" aria-labelledby="{{forloop.counter}}-tab">
+                                              <table class="table table-hover" cellspacing="0">
+                                                  <thead>
+                                                    <tr>
+                                                      <th scope="col">Titulo</th>
+                                                      <th scope="col">Palestrante</th>
+                                                      <th scope="col">Tipo</th>
+                                                      <th scope="col">Horario</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      {% for prog in programacao.list%}
+                                                          <tr>
+                                                              <td>{{prog.titulo}}</td>
+                                                              {% if prog.palestrante == None%}
+                                                                  <td style="vertical-align: middle;"></td>
+                                                              {% else %}
+                                                                  <td style="vertical-align: middle;">{{prog.palestrante}}</td>
+                                                              {% endif %}
+                                                              <td>{{prog.tipo}}</td>
+                                                              <td>{{prog.data_hora|date:"H:i" }}</td>
+                                                          </tr>
+                                                      {% endfor %}
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          </div>
+        </div>
+        {% endif %}
+        {% if palestrantes %}
+        <div class="jumbotron">
+          <div class="box inscricao ng-scope">
+            <div class="text-center">
+            <h3 class="with-subtitle">Palestrantes</h3>
+            <p class="subtitle"></p>
+          </div>
+            <div class="row" style="text-align: -webkit-center;margin-top: 30px;">
+              {% for palestrante in palestrantes %}
+              <div class="col-sm-3 foto">
+                <img class="rounded-circle" src="{{palestrante.imagem.url}}" alt="Generic placeholder image" width="95" height="95" style="margin-top: 10px;">
+                <h5>{{palestrante.nome}}</h5>
+                <p>{{palestrante.afiliacao}}</p>
+              </div><!-- /.col-sm-3 -->
+              {% endfor %}
+            </div><!-- /.row -->
+          </div>
+        </div>
+        {% endif %}
+        {% if evento.local %}
+        <div class="jumbotron">
+          <div class="box inscricao ng-scope">
+            <div class="text-center">
+            <h3 class="with-subtitle">Local do evento</h3>
+            <p class="subtitle"></p>
+            </div>
+              <div style="text-align: -webkit-center;margin-top: 30px;">
+                <iframe src="http://maps.google.de/maps?hl=pt-BR&q={{evento.local}}&ie=UTF8&t=&z=17&iwloc=B&output=embed" width="600" height="450" frameborder="0" allowfullscreen="" style="border-width: 0px; border-style: initial;"></iframe>
+              </div>
+            </div>
+        </div>
+         {% endif %}
+        <div class="jumbotron" style="margin-bottom: 0px; padding-bottom: 0px;">
+          <div class="box inscricao ng-scope">
+            <div class="text-center">
+            <h3 class="with-subtitle">Organização</h3>
+            <p class="subtitle"></p>
+          </div>
+            <div class="text-center">
+            <h3 class="with-subtitle">{{organizacao.nome}}</h3>
+            <p class="subtitle">Email: {{organizacao.email}} | Telefone: {{organizacao.telefone}}</p>
+          </div>
+        </div>
+        </div>
+        <div class="container butao">
+          <a href="{% url 'sigea:inscricao' evento.id %}" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Inscrever-se</a>
+        </div>
+      </div>
+    <!-- Footer -->
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; <script> document.write(new Date().getFullYear()); </script> DTIC - UESPI</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
+
+  <!--Custom JavaScript-->
+  <script src="{% static 'js/evento_pagina.js' %}"></script>
+
+  {% if messages %}
+   {% for message in messages %}
+      {% if message.tags == 'info'%}
+            <script>
+               $.notify({
+                  // options
+                  message: '{{message}}',
+                  },{
+                  // settings
+                  type: 'success',
+                  timer: 500,
+                  placement: {
+                     from: "top",
+                     align: "center"
+                  },
+
+                  animate: {
+                     enter: 'animated bounceInDown',
+                     exit: 'animated bounceOutUp'
+                  },
+               });
+            </script>
+
+      {% elif message.tags == 'error'%}
+            <script>
+               $.notify({
+                  // options
+                  message: '{{message}}',
+                  },{
+                  // settings
+                  type: 'danger',
+                  timer: 500,
+                  placement: {
+                     from: "top",
+                     align: "center"
+                  },
+
+                  animate: {
+                     enter: 'animated bounceInDown',
+                     exit: 'animated bounceOutUp'
+                  },
+               });
+            </script>
+      {% endif %}
+   {% endfor %}
+{% endif %}
+</body>
+
+</html>

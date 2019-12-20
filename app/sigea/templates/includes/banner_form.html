@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+{% load static %}
+{% render_field evento_config_form.sobre.as_hidden %}
+<div class="jumbotron">
+    <div class="box inscricao ng-scope">
+        <div class="form-group">
+            <label class="font-weight-bold" for="local_evento">Banner do evento:</label>
+            <br>
+            {% render_field evento_config_form.banner  class="form-control input-tm-1" %}
+            {{evento_config_form.banner.url}}
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#banner-modal">
+            <i class="material-icons" style="vertical-align: bottom;">visibility</i>
+            Visualizar
+        </button>
+    </div>
+</div>
+<br>
+<button type="submit" class="btn btn-success mb-4">
+    <i class="material-icons" style="vertical-align: bottom;">
+        save</i>
+        Salvar Modificaçoes
+</button>
+<!-- Modal -->
+<div class="modal" id="banner-modal" >
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content page-baner card text-center shadow">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
+        <div class="card-body" >
+            <h5 class="card-title" style="color: blue;">{{evento.titulo}}</h5>
+        </div>
+    </div>
+  </div>
+</div>

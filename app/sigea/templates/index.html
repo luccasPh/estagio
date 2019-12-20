@@ -6,84 +6,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-   <title>SIGEA - UESPI</title>
+    
+    <link rel="icon" href="{% static 'img/icon.png' %}">
+    <title>SIGEA - UESPI</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/index.css' %}" rel="stylesheet">
+  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
 
   </head>
 
   <body>
 
      <!-- Navigation -->
-    <div class="shadow p-3 mb-5 bg-white rounded">
-        {% include 'includes/navbar.html' %}
+    <div class="shadow-sm p-2 mb-2 bg-white rounded">
+         <nav class="navbar navbar-light box-shadow">
+          <div class="container">
+            <a href="https://www.uespi.br/site/" title="Universidade Estadual do Piauí"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
+            <a href="/" title="Sistema de Gerenciamento de Eventos Acadamecios"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+            {% if logado %}
+              {% include 'includes/drop_organizacao.html' %}
+            {% else %}
+              {% include 'includes/drop_login.html' %}
+            {% endif %}
+          </div>
+        </nav>
     </div>
 
     <main role="main">
-
       <div class="album py-5 bg-light">
         <div class="container">
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                  <img class="card-imag-top" src="{% static 'img/teste.png' %}" alt="Card image cap">
-                  <div class="card-body">
-                  <a href="#" target="_blank">
-                    <h1 title="I SINTA - Simpósio de Internacionalização Acadêmica" itemprop="name">I SINTA - Simpósio de Internacionalização Acadêmica</h1>
-                  </a>
-                  <p class="card-text"><small class="text-muted">
-                  Data: 17 - 19 de Feveiro de 2020 <br>
-                  Local: UESPI
-                  </small></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                  <img class="card-imag-top" src="{% static 'img/teste2.jpeg' %}" alt="Card image cap">
-                  <div class="card-body">
-                  <a href="#" target="_blank">
-                    <h1 title="Novembro Afro: A condição da juventude negra e mulheres na atualidade" itemprop="name">Novembro Afro: "A condição da juventude negra e mulheres na atualidade</h1>
-                  </a>
-                   <p class="card-text"><small class="text-muted">
-                    Data: 24 - 26 de Janeiro de 2020 <br>
-                    Local: IFPI Sul
-                 </small></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                  <img class="card-imag-top" src="{% static 'img/teste3.jpg' %}" alt="Card image cap">
-                  <div class="card-body">
-                  <a href="#" target="_blank">
-                    <h1 title="Formação em Analista de RH- Juazeiro/Ba" itemprop="name">Formação em Analista de RH- Juazeiro/Ba</h1>
-                  </a>
-                 <p class="card-text"><small class="text-muted">
-                    Data: 31 de Janeiro de 2020 <br>
-                    Local: CTU
-                 </small></p>
-                </div>
-              </div>
-            </div>
+          <div class="row" id="card-eventos">
+            {% if logado %}
+            {% include 'includes/organizacao_eventos.html'%}
+            {% else %}
+            {% include 'includes/todos_eventos.html'%}
+            {% endif %}
           </div>
         </div>
       </div>
-
+      <div class="modal fade modal-evento">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+          </div>
+        </div>
+      </div>
     </main>
 
-    <!-- Footer -->
-    {% include 'includes/footer.html'%}
-
+     <!-- Footer -->
+     <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1" style="text-align: -webkit-center;">&copy; <script> document.write(new Date().getFullYear()); </script> DTIC - UESPI</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+      
     <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/moment/moment.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/moment/pt-br.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/bootstrap/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    
+    <!-- Pagina core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+  {% if messages %}
+   {% for message in messages %}
+      {% if message.tags == 'info'%}
+            <script>
+               $.notify({
+                  // options
+                  message: '{{message}}',
+                  },{
+                  // settings
+                  type: 'success',
+                  timer: 500,
+                  placement: {
+                     from: "top",
+                     align: "center"
+                  },
+
+                  animate: {
+                     enter: 'animated bounceInDown',
+                     exit: 'animated bounceOutUp'
+                  },
+               });
+            </script>
+
+      {% elif message.tags == 'error'%}
+            <script>
+               $.notify({
+                  // options
+                  message: '{{message}}',
+                  },{
+                  // settings
+                  type: 'danger',
+                  timer: 500,
+                  placement: {
+                     from: "top",
+                     align: "center"
+                  },
+
+                  animate: {
+                     enter: 'animated bounceInDown',
+                     exit: 'animated bounceOutUp'
+                  },
+               });
+            </script>
+      {% endif %}
+   {% endfor %}
+{% endif %}
   </body>
 </html>

@@ -1,0 +1,70 @@
+{% load widget_tweaks %}
+<style>
+.page-baner{
+    display: table;
+    width: 100%;
+    height: 525px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: white;
+    
+  }
+  .titulo{
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.42857143;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+h1{
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  text-align: center;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  font-weight: 700;
+  line-height: 1.2em;
+  margin: 3px 0;
+  font-size: 3em;
+}
+
+</style>
+{% render_field evento_config_form.capa class="form-control input-tm-1" %}
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#capa-modal">
+    <i class="material-icons" style="vertical-align: bottom;">visibility</i>
+    Visualizar
+</button>
+<!-- Modal -->
+<div class="modal" id="capa-modal" >
+  <div class="modal-dialog modal-xl" role="document" >
+    <div class="modal-content" >
+      <div class="modal-header page-baner" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('{{evento.capa.url}}');">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <div class="carousel-caption" style="top: 40%;">
+                <div class="col-xs-12 center-block">
+                    <div class="titulo">
+                        <h1>{{evento.titulo}}</h1>
+                    </div>
+                    <div class="local data" id="locais_datas">
+                        {% if evento.data_inicio and evento.data_fim%}
+                    <h6>
+                        {% if evento.data_inicio == evento.data_fim%}
+                            {{evento.data_fim|date:"d F Y" }} <br>
+                        {% else %}
+                            {{evento.data_inicio|date:'d' }} á {{evento.data_fim|date:"d F Y" }}<br>
+                        {% endif %}<br>
+                    </h6>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

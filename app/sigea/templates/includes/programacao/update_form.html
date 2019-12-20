@@ -1,5 +1,5 @@
 {% load widget_tweaks %}
-<form method="POST" id="programacao-update" action="{% url 'sigea:programacao_update' programacao_form.instance.id %}">
+<form method="POST" id="programacao-update" action="{% url 'sigea:programacao_update' evento.id programacao_form.instance.id %}">
     {% csrf_token %}
     <div class="modal-header">
         <h5 class="modal-title">Editar Programação</h5>
@@ -7,25 +7,33 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-     <div class="modal-body">
+        <div class="modal-body">
            <div class="form-group">
-                <label class="font-weight-bold" for="nome">Titulo</label>
+                <label class="font-weight-bold" for="nome">Titulo:</label>
                 {% render_field programacao_form.titulo class="form-control" %}
             </div>
+             <div class="form-group">
+                <label class="font-weight-bold" for="palestrante">Palestrante:</label>
+                {% render_field programacao_form.palestrante class="form-control"%}
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" for="tipo">Tipo de Atividade:</label>
+                {% render_field programacao_form.tipo class="form-control" %}
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" for="inscrever">Requer inscrição:</label>
+                {% render_field programacao_form.inscrever class="form-control"%}
+            </div>
            <div class="form-group">
-                <label class="font-weight-bold" for="data_hora">Data / Horario</label>
+                <label class="font-weight-bold" for="data_hora">Data / Horario:</label>
                 <div class="form-group">
-                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                        {% render_field programacao_form.data_hora class="form-control datetimepicker-input" data-target="#datetimepicker4" %}
-                            <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker" data-toggle="tooltip" data-placement="top" title="Selecione a data e as horas!">
+                    <div class="input-group date" id="datetimepicker6" data-target-input="nearest">
+                        {% render_field programacao_form.data_hora class="form-control datetimepicker-input" data-target="#datetimepicker6" %}
+                            <div class="input-group-append" data-target="#datetimepicker6" data-toggle="datetimepicker" data-toggle="tooltip" data-placement="top" title="Selecione a data e as horas!">
                             <div class="input-group-text"><i class="material-icons">date_range</i></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="font-weight-bold" for="atividade">Tipo de Atividade</label>
-                {% render_field programacao_form.atividade class="form-control" %}
             </div>
         </div>
     </div>

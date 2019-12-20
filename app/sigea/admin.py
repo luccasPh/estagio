@@ -28,4 +28,5 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(models.Programacao)
 admin.site.register(models.Palestrante)
 admin.site.register(models.Evento)
+admin.site.register(models.Inscricao)
 admin.site.register(models.CustomUser, CustomUserAdmin)

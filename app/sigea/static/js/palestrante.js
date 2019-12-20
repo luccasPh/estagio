@@ -48,46 +48,50 @@ $(function () {
 			processData: false,
     		contentType: false,
 			success: function (data) {
-				$("#palestrante-table tbody").html(data.table_html)
-				$(".modal-organizador").modal("hide");
-				$.notify({
-					// options
-					message: msg_succes,
-					},{
-					// settings
-					type: 'success',
-					timer: 500,
-					placement: {
-						from: "top",
-						align: "center"
-					},
+				if (data.valido_form){
+					$("#palestrante-table tbody").html(data.table_html)
+					$("#update-create").html(data.programacao_create_html)
+					$("#programacao-table tbody").html(data.table_programacao_html)
+					$(".modal-organizador").modal("hide");
+					$.notify({
+						// options
+						message: msg_succes,
+						},{
+						// settings
+						type: 'success',
+						timer: 500,
+						placement: {
+							from: "top",
+							align: "center"
+						},
 
-					animate: {
-						enter: 'animated bounceInDown',
-						exit: 'animated bounceOutUp'
-					},
-				});
-			},
-			error: function() {
-				$(".modal-organizador").modal("hide");
-				$.notify({
-					// optionse
-					message: msg_error,
-					},{
-					// settings
-					type: 'warning',
-
-					placement: {
-						from: "top",
-						align: "center"
-					},
-
-					animate: {
-						enter: 'animated bounceInDown',
+						animate: {
+							enter: 'animated bounceInDown',
 							exit: 'animated bounceOutUp'
-					},
-				});
-			},
+						},
+					});
+				}
+				else{
+					$(".modal-organizador").modal("hide");
+					$.notify({
+						// optionse
+						message: msg_error,
+						},{
+						// settings
+						type: 'danger',
+
+						placement: {
+							from: "top",
+							align: "center"
+						},
+
+						animate: {
+							enter: 'animated bounceInDown',
+								exit: 'animated bounceOutUp'
+						},
+					});
+				}
+			}
 
 		});
 

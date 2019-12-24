@@ -25,6 +25,7 @@ app_name = "sigea"
 urlpatterns = [
     path('logout', views.Logout.as_view(), name='logout'),
     path('', views.Index.as_view(), name="index"),
+    path('editar', views.EditarOrgnizacao.as_view(), name='editar'),
 
     path('evento/<int:evpk>/config', views.EventoConfig.as_view(), name="evento_config"),
     path('evento/<int:evpk>/config#filter', views.InscricaoFilter.as_view(), name="inscricao_filter"),

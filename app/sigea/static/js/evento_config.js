@@ -43,6 +43,22 @@ $("#menu-toggle").click(function(e) {
 
 $(function () {
 
+	var loadForm = function () {
+		var btn = $(this);
+		$.ajax({
+		  url: btn.attr("data-url"),
+		  type: 'get',
+		  dataType: 'json',
+		  beforeSend: function () {
+			$(".modal-config .modal-content").html("");
+			$(".modal-config").modal("show");
+		  },
+		  success: function (data) {
+			$(".modal-config .modal-content").html(data.form_html);
+		  }
+		});
+	  };
+
     var saveForm = function () {
 		var form = $(this);
 		var formData = new FormData(this);
@@ -56,56 +72,24 @@ $(function () {
 			contentType: false,
 			dataType: 'json',
 			success: function (data) {
+				$(".modal-config").modal("hide");
 				$("#banner-form").html(data.banner_form);
 				$("#escodidas").html(data.escodidas);
 				$("#capa-form").html(data.capa_form);
 				$("#titulo-nav").html(data.titulo_nav);
-				$.notify({
-					// options
-					message: "Configuração do evento salvo com sucesso!",
-					},{
-					// settings
-					type: 'success',
-					timer: 500,
-					placement: {
-						from: "top",
-						align: "center"
-					},
-
-					animate: {
-						enter: 'animated bounceInDown',
-						exit: 'animated bounceOutUp'
-					},
-				});
-			},
-			error: function() {
-				$.notify({
-					// optionse
-					message: "Não possivel salva as configuração do evento!",
-					},{
-					// settings
-					type: 'danger',
-
-					placement: {
-						from: "top",
-						align: "center"
-					},
-
-					animate: {
-						enter: 'animated bounceInDown',
-							exit: 'animated bounceOutUp'
-					},
-				});
+				$("#messagens").html(data.messages)
 			},
 
 		});
 		return false;
     };
   
-    /* Binding */
+	//Editar Organizacao
+	$("#editar-organizacao").on("click", loadForm)
+	$(".modal-config").on("submit", "#organizacao-update", saveForm);
   
     // Create Programação
 	$("#inicio-form").submit(saveForm);
-	$("#capa-form").submit(saveForm);
+	$("#apresentacao-form").submit(saveForm);
 
   });

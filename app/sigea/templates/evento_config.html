@@ -122,7 +122,7 @@
             </form>
           </div>
           <div class="tab-pane" id="apresentacao" role="tabpanel">
-            <form method="POST" enctype='multipart/form-data' id="capa-form" action="{% url 'sigea:evento_config' evento.id %}">
+            <form method="POST" enctype='multipart/form-data' id="apresentacao-form" action="{% url 'sigea:evento_config' evento.id %}">
               {% csrf_token %}
               <div>
                   <br>
@@ -134,7 +134,7 @@
                   <div class="jumbotron">
                     <div class="box inscricao ng-scope">
                       <div class="form-group">
-                          <label class="font-weight-bold" for="data_evento">Descrição sobre o evento:</label>
+                          <label class="font-weight-bold" for="sobre">Descrição sobre o evento:</label>
                           {% render_field evento_config_form.sobre %}
                       </div>
                     </div>
@@ -255,10 +255,7 @@
                           {% include 'includes/inscricoes_tabela.html' %}
                         </div>
                         <div id="gera-pdf">
-                          <a href="{% url 'sigea:inscricao_pdf' evento.id '0' %}" class="btn btn-primary active" aria-pressed="true" target="_blank">
-                          <i class="material-icons" style="vertical-align: bottom;">
-                                picture_as_pdf
-                                </i>Gera PDF</a>
+                           {% include 'includes/buttao_gera_pdf.html' %}                       
                         </div>
                       </div>
                     </div>
@@ -277,7 +274,7 @@
           </footer>
 
       </div>
-      <div class="modal fade modal-organizador">
+      <div class="modal fade modal-config">
         <div class="modal-dialog">
           <div class="modal-content">
 
@@ -352,6 +349,7 @@
     <script src="{% static 'vendor/bootstrap/js/bootstrap-table.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap-table-pt-BR.min.js' %}"></script>
 
     <!-- Custom JavaScript for this template -->
     <script src="{% static 'js/evento_config.js' %}"></script>
@@ -427,51 +425,8 @@
       });
     </script>
   
-  {% if messages %}
-   {% for message in messages %}
-      {% if message.tags == 'info'%}
-            <script>
-               $.notify({
-                  // options
-                  message: '{{message}}',
-                  },{
-                  // settings
-                  type: 'success',
-                  timer: 500,
-                  placement: {
-                     from: "top",
-                     align: "center"
-                  },
-
-                  animate: {
-                     enter: 'animated bounceInDown',
-                     exit: 'animated bounceOutUp'
-                  },
-               });
-            </script>
-      {% elif message.tags == 'error'%}
-            <script>
-               $.notify({
-                  // options
-                  message: '{{message}}',
-                  },{
-                  // settings
-                  type: 'danger',
-                  timer: 500,
-                  placement: {
-                     from: "top",
-                     align: "center"
-                  },
-
-                  animate: {
-                     enter: 'animated bounceInDown',
-                     exit: 'animated bounceOutUp'
-                  },
-               });
-            </script>
-      {% endif %}
-   {% endfor %}
-{% endif %}
+  <div id="messagens">
+  </div>
 
 </body>
 

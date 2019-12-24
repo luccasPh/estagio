@@ -10,13 +10,15 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = models.CustomUser
         fields = ('email','nome', 'telefone',)
+        
 
 
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = models.CustomUser
-        fields = ('email','nome', 'telefone',)
+        fields = ('email','nome', 'telefone')
+       
 
 class EventoForm(forms.ModelForm):
     

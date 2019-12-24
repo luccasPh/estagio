@@ -5,13 +5,13 @@
         <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
         <div class="card-body" >
             <h5 class="card-title">
-                <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}" target="_blank">{{evento.titulo}}</a>
+                <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}" >{{evento.titulo}}</a>
             </h5>
             <p class="card-text"><small class="text-muted" style="color: #2b2c2d!important;">
                 {% if evento.data_inicio == evento.data_fim%}
-                   {{evento.data_fim|date:"d F Y" }} <br>
+                   {{evento.data_fim }} <br>
                 {% else %}
-                   {{evento.data_inicio|date:'d' }} - {{evento.data_fim|date:"d F Y" }}<br>
+                   {{evento.data_inicio|date:'d' }} á {{evento.data_fim}}<br>
                 {% endif %}
                 {{evento.local}}
             </small></p>

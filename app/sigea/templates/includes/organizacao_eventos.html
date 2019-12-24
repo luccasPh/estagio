@@ -12,9 +12,9 @@
                 </a>
                 <p class="card-text"><small class="text-muted">
                     {% if evento.data_inicio == evento.data_fim%}
-                        {{evento.data_fim|date:"d F Y" }} <br>
+                        {{evento.data_fim}} <br>
                     {% else %}
-                        {{evento.data_inicio|date:'d' }} - {{evento.data_fim|date:"d F Y" }}<br>
+                        {{evento.data_inicio|date:'d' }} á {{evento.data_fim}}<br>
                     {% endif %}
                     {{evento.local}}
                 </small></p>
@@ -24,7 +24,7 @@
                     <i class="material-icons">edit</i>
                 </a>
                 <button type="button" 
-                    class="btn btn-danger btn-sm evento-confirm"
+                    class="btn btn-danger btn-sm evento-delete"
                     data-toggle="tooltip" data-placement="top" title="Excluir evento" 
                     data-url="{% url 'sigea:evento_delete' evento.id %}"><i class="material-icons">delete</i>
                 </button>

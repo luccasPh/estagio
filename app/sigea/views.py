@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -70,6 +70,42 @@ class Logout(View):
         logout(request)
         messages.info(request, "Desconectado com sucesso!")
         return redirect("sigea:index")
+
+class EditarOrgnizacao(View):
+
+    def get(self, request, *args, **kwargs):
+        data = dict()
+        organizacao_form = forms.CustomUserChangeForm(instance=request.user)
+        data["form_html"] = render_to_string("includes/editar_organizacao.html", {
+            "organizacao_form": organizacao_form,
+        }, request=request)
+        
+        return JsonResponse(data)
+    
+    def post(self, request, *args, **kwargs):
+        data = dict()
+        organizacao_form = forms.CustomUserChangeForm(request.POST, instance=request.user)
+
+        if organizacao_form.is_valid():
+            organizacao = organizacao_form.save(commit=False)
+
+            if len(organizacao.telefone) < 16:
+                messages.error(request, "Formato de telefone invalido.")
+            
+            else:
+                organizacao.save()
+                messages.info(request, "Informações alterado com sucesso.")
+                
+            data["messages"] = render_to_string("includes/messages.html", request=request)
+
+            return JsonResponse(data)
+        
+        else:
+            data["messages"] = render_to_string("includes/messages.html", {
+                "form": organizacao_form
+            }, request=request)
+            
+            return JsonResponse(data)
 
 class TestUsuario(UserPassesTestMixin):
     
@@ -146,7 +182,7 @@ class InscricaoPage(View):
             elif len(form.cpf) < 14:
                 messages.error(request, "CPF Invalido")
 
-            elif len(form.telefone) < 14:
+            elif len(form.telefone) < 16:
                 messages.error(request, "Telefone Invalido")
 
             else:
@@ -269,6 +305,9 @@ class EventoDelete(TestUsuario, View):
         evento.delete()    
 
         eventos = request.user.evento_set.all()
+        messages.info(request, "Evento deletado com sucesso.")
+
+        self.data["messages"] = render_to_string("includes/messages.html", request=request)
         self.data["evento_cards"] = render_to_string("includes/organizacao_eventos.html", {
             "eventos": eventos
         })
@@ -341,9 +380,19 @@ class EventoConfig(TestUsuario, View):
                 "evento": evento
             })
 
-            data["valido_form"] = True
+            messages.info(request, "Configuração do evento salvo com sucesso.")
+            data["messages"] = render_to_string("includes/messages.html", request=request)
 
-        return JsonResponse(data)
+            return JsonResponse(data)
+
+        
+        else:
+            data["messages"] = render_to_string("includes/messages.html", {
+                "form": evento_config_form
+            }, request=request)
+            
+            return JsonResponse(data)
+
 
 class PalestranteCreate(TestUsuario, View):
 

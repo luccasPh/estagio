@@ -9,11 +9,11 @@ $(function () {
         type: 'GET',
         dataType: 'json',
         beforeSend: function () {
-          $(".modal-organizador .modal-content").html("");
-          $(".modal-organizador").modal("show");
+          $(".modal-config .modal-content").html("");
+          $(".modal-config").modal("show");
         },
         success: function (data) {
-          $(".modal-organizador .modal-content").html(data.form_html);
+          $(".modal-config .modal-content").html(data.form_html);
         }
       });
     };
@@ -46,7 +46,7 @@ $(function () {
 			success: function (data) {
 				if (data.valido_form){
 					$("#programacao-table tbody").html(data.table_html);
-					$(".modal-organizador").modal("hide");
+					$(".modal-config").modal("hide");
 					$("#area-filtro").html(data.filtro_form);
 					$.notify({
 						// options
@@ -67,7 +67,7 @@ $(function () {
 					});
 				}
 				else{
-					$(".modal-organizador").modal("hide");
+					$(".modal-config").modal("hide");
 					$.notify({
 						// optionse
 						message: msg_error,
@@ -103,10 +103,10 @@ $(function () {
 
 	//Update Programação
 	$("#programacao-table").on("click", ".programacao-update-form", loadForm);
-    $(".modal-organizador").on("submit", "#programacao-update", saveForm);
+    $(".modal-config").on("submit", "#programacao-update", saveForm);
 
     // Delete Programação
     $("#programacao-table").on("click", ".programacao-delete-form", loadForm);
-    $(".modal-organizador").on("submit", "#programacao-delete", saveForm);
+    $(".modal-config").on("submit", "#programacao-delete", saveForm);
   
   });

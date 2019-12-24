@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="modal fade modal-evento">
+      <div class="modal fade modal-index">
         <div class="modal-dialog">
           <div class="modal-content">
           
@@ -74,6 +74,7 @@
     <script type="text/javascript" src="{% static 'vendor/moment/moment.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/moment/pt-br.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.mask.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/bootstrap/js/tempusdominus-bootstrap-4.min.js' %}"></script>
@@ -81,51 +82,8 @@
     <!-- Pagina core JavaScript -->
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
-  {% if messages %}
-   {% for message in messages %}
-      {% if message.tags == 'info'%}
-            <script>
-               $.notify({
-                  // options
-                  message: '{{message}}',
-                  },{
-                  // settings
-                  type: 'success',
-                  timer: 500,
-                  placement: {
-                     from: "top",
-                     align: "center"
-                  },
-
-                  animate: {
-                     enter: 'animated bounceInDown',
-                     exit: 'animated bounceOutUp'
-                  },
-               });
-            </script>
-
-      {% elif message.tags == 'error'%}
-            <script>
-               $.notify({
-                  // options
-                  message: '{{message}}',
-                  },{
-                  // settings
-                  type: 'danger',
-                  timer: 500,
-                  placement: {
-                     from: "top",
-                     align: "center"
-                  },
-
-                  animate: {
-                     enter: 'animated bounceInDown',
-                     exit: 'animated bounceOutUp'
-                  },
-               });
-            </script>
-      {% endif %}
-   {% endfor %}
-{% endif %}
+    <div id="messagens">
+    
+    </div>
   </body>
 </html>

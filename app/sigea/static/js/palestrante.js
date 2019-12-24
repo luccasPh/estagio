@@ -10,11 +10,11 @@ $(function () {
         type: 'get',
         dataType: 'json',
         beforeSend: function () {
-          $(".modal-organizador .modal-content").html("");
-          $(".modal-organizador").modal("show");
+          $(".modal-config .modal-content").html("");
+          $(".modal-config").modal("show");
         },
         success: function (data) {
-          $(".modal-organizador .modal-content").html(data.form_html);
+          $(".modal-config .modal-content").html(data.form_html);
         }
       });
     };
@@ -52,7 +52,7 @@ $(function () {
 					$("#palestrante-table tbody").html(data.table_html)
 					$("#update-create").html(data.programacao_create_html)
 					$("#programacao-table tbody").html(data.table_programacao_html)
-					$(".modal-organizador").modal("hide");
+					$(".modal-config").modal("hide");
 					$.notify({
 						// options
 						message: msg_succes,
@@ -72,7 +72,7 @@ $(function () {
 					});
 				}
 				else{
-					$(".modal-organizador").modal("hide");
+					$(".modal-config").modal("hide");
 					$.notify({
 						// optionse
 						message: msg_error,
@@ -108,10 +108,10 @@ $(function () {
 
 	//Update Programação
 	$("#palestrante-table").on("click", ".palestrante-update-form", loadForm);
-    $(".modal-organizador").on("submit", "#palestrante-update", saveForm);
+    $(".modal-config").on("submit", "#palestrante-update", saveForm);
 
     // Delete Programação
     $("#palestrante-table").on("click", ".palestrante-delete-form", loadForm);
-    $(".modal-organizador").on("submit", "#palestrante-delete", saveForm);
+    $(".modal-config").on("submit", "#palestrante-delete", saveForm);
   
   });

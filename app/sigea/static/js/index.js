@@ -25,18 +25,17 @@ $(function () {
         type: 'get',
         dataType: 'json',
         beforeSend: function () {
-          $(".modal-evento .modal-content").html("");
-          $(".modal-evento").modal("show");
+          $(".modal-index .modal-content").html("");
+          $(".modal-index").modal("show");
         },
         success: function (data) {
-          $(".modal-evento .modal-content").html(data.form_html);
+          $(".modal-index .modal-content").html(data.form_html);
         }
       });
     };
   
     var saveForm = function () {
 		var form = $(this);
-
 		$.ajax({
 			url: form.attr("action"),
 			data: form.serialize(),
@@ -44,55 +43,20 @@ $(function () {
 			dataType: 'json',
 			success: function (data) {
 				$("#card-eventos").html(data.evento_cards)
-				$(".modal-evento").modal("hide");
-				$.notify({
-					// options
-					message: "Evento excluída com sucessor!",
-					},{
-					// settings
-					type: 'success',
-					timer: 500,
-					placement: {
-						from: "top",
-						align: "center"
-					},
-
-					animate: {
-						enter: 'animated bounceInDown',
-						exit: 'animated bounceOutUp'
-					},
-				});
-			},
-			error: function() {
-				$(".modal-organizador").modal("hide");
-				$.notify({
-					// optionse
-					message: "Não foi possivel excluir o evento",
-					},{
-					// settings
-					type: 'danger',
-
-					placement: {
-						from: "top",
-						align: "center"
-					},
-
-					animate: {
-						enter: 'animated bounceInDown',
-							exit: 'animated bounceOutUp'
-					},
-				});
-			},
-
+				$(".modal-index").modal("hide");
+				$("#messagens").html(data.messages)
+			}
 		});
 
 		return false;
     };
   
-    /* Binding */
+	// Editar Organização
+	$("#editar-organizacao").on("click", loadForm)
+	$(".modal-index").on("submit", "#organizacao-update", saveForm);
 
 	// Delete Programação
-	$("#card-eventos").on("click", ".evento-confirm", loadForm);
-    $(".modal-evento").on("submit", "#evento-delete", saveForm);
+	$("#card-eventos").on("click", ".evento-delete", loadForm);
+    $(".modal-index").on("submit", "#evento-delete", saveForm);
   
   });

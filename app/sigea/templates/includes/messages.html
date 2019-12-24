@@ -1,0 +1,97 @@
+{% load static %}
+{% load widget_tweaks %}
+<script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <script>
+            $.notify({
+                // options
+                message: '{{ error|escape }}',
+                },{
+                // settings
+                type: 'danger',
+                timer: 500,
+                placement: {
+                    from: "top",
+                    align: "center"
+                },
+
+                animate: {
+                    enter: 'animated bounceInDown',
+                    exit: 'animated bounceOutUp'
+                },
+            });
+            </script>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <script>
+            $.notify({
+                // options
+                message: '{{ error|escape }}',
+                },{
+                // settings
+                type: 'danger',
+                timer: 500,
+                placement: {
+                from: "top",
+                align: "center"
+                },
+
+                animate: {
+                enter: 'animated bounceInDown',
+                exit: 'animated bounceOutUp'
+                },
+            });
+        </script>
+    {% endfor %}
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'info'%}
+            <script>
+                $.notify({
+                    // options
+                    message: '{{message}}',
+                    },{
+                    // settings
+                    type: 'success',
+                    timer: 500,
+                    placement: {
+                    from: "top",
+                    align: "center"
+                    },
+
+                    animate: {
+                    enter: 'animated bounceInDown',
+                    exit: 'animated bounceOutUp'
+                    },
+                });
+            </script>
+
+        {% elif message.tags == 'error'%}
+            <script>
+                $.notify({
+                    // options
+                    message: '{{message}}',
+                    },{
+                    // settings
+                    type: 'danger',
+                    timer: 500,
+                    placement: {
+                    from: "top",
+                    align: "center"
+                    },
+
+                    animate: {
+                    enter: 'animated bounceInDown',
+                    exit: 'animated bounceOutUp'
+                    },
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}

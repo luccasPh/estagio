@@ -7,9 +7,9 @@
       {{user.nome}}
    </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-evento">Criar novo evento</a>
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-evento">Novo Evento</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Editar organização</a>
+    <a class="dropdown-item" id="editar-organizacao" data-url="{% url 'sigea:editar' %}" href="#">Editar Organização</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="{% url 'sigea:logout'%}">Sair</a>
   </div>

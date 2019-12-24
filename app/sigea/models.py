@@ -12,14 +12,13 @@ import os
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     nome = models.CharField(max_length=75)
-    telefone = models.CharField(max_length=25)
+    telefone = models.CharField(max_length=16)
     is_staff = models.BooleanField(_('gerência'), default=False,
         help_text=_('Designa se o usuário pode efetuar login neste administrador.'))
     is_active = models.BooleanField(_('ativo'), default=True,
         help_text=_('Designa se esse usuário deve ser tratado como ativo. Desmarque isso em vez de excluir contas.'))
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nome','telefone']
 
     objects = CustomUserManager()
 

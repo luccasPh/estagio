@@ -55,7 +55,7 @@
                     <div class="row">
                       <div class="col-md-3 mb-3">
                           <label class="font-weight-bold" for="nome">CEP:</label>
-                          <input class="form-control" placeholder="Digite seu CEP." name="cep" type="text" id="cep" value="" size="10" maxlength="9"onblur="pesquisacep(this.value);" /></input>
+                          <input class="form-control cep" placeholder="Digite seu CEP." name="cep" type="text" id="cep" value="" size="10" maxlength="9"onblur="pesquisacep(this.value);" /></input>
                       </div>
                       <div class="col-md-9 mb-3">
                           <label class="font-weight-bold" for="nome">Endereço:</label>
@@ -132,99 +132,6 @@
 
     <!-- Pagina core JavaScript -->
     <script src="{% static 'js/inscricao_pagina.js' %}"></script>
-
-    {% if formulario.errors %}
-      {% for field in formulario %}
-          {% for error in field.errors %}
-              <script>
-                $.notify({
-                    // options
-                    message: '{{ error|escape }}',
-                    },{
-                    // settings
-                    type: 'danger',
-                    timer: 500,
-                    placement: {
-                      from: "top",
-                      align: "center"
-                    },
-
-                    animate: {
-                      enter: 'animated bounceInDown',
-                      exit: 'animated bounceOutUp'
-                    },
-                });
-              </script>
-          {% endfor %}
-      {% endfor %}
-      {% for error in formulario.non_field_errors %}
-            <script>
-              $.notify({
-                  // options
-                  message: '{{ error|escape }}',
-                  },{
-                  // settings
-                  type: 'danger',
-                  timer: 500,
-                  placement: {
-                    from: "top",
-                    align: "center"
-                  },
-
-                  animate: {
-                    enter: 'animated bounceInDown',
-                    exit: 'animated bounceOutUp'
-                  },
-              });
-            </script>
-      {% endfor %}
-    {% endif %}
-
-     {% if messages %}
-      {% for message in messages %}
-          {% if message.tags == 'info'%}
-                <script>
-                  $.notify({
-                      // options
-                      message: '{{message}}',
-                      },{
-                      // settings
-                      type: 'success',
-                      timer: 500,
-                      placement: {
-                        from: "top",
-                        align: "center"
-                      },
-
-                      animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                      },
-                  });
-                </script>
-
-          {% elif message.tags == 'error'%}
-                <script>
-                  $.notify({
-                      // options
-                      message: '{{message}}',
-                      },{
-                      // settings
-                      type: 'danger',
-                      timer: 500,
-                      placement: {
-                        from: "top",
-                        align: "center"
-                      },
-
-                      animate: {
-                        enter: 'animated bounceInDown',
-                        exit: 'animated bounceOutUp'
-                      },
-                  });
-                </script>
-          {% endif %}
-      {% endfor %}
-    {% endif %}
+    
   </body>
 </html>

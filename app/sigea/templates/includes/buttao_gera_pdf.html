@@ -1,9 +1,12 @@
 {% if inscricoes %}
     {% load widget_tweaks %}
-    <br>
     {% if atividade.id %}
-        <a href="{% url 'sigea:inscricao_pdf' evento.id atividade.id %}" class="btn btn-primary active" aria-pressed="true" target="_blank">Gera PDF</a>
+        <a href="{% url 'sigea:inscricao_pdf' evento.id atividade.id %}" class="btn btn-primary active" aria-pressed="true" target="_blank" style="margin-top: 30px;"><i class="material-icons" style="vertical-align: bottom;">
+                                picture_as_pdf
+                                </i>Gera PDF</a>
     {% else %}
-        <a href="{% url 'sigea:inscricao_pdf' evento.id '0' %}" class="btn btn-primary active" aria-pressed="true" target="_blank">Gera PDF</a>
+        <a href="{% url 'sigea:inscricao_pdf' evento.id '0' %}" class="btn btn-primary active" aria-pressed="true" target="_blank" style="margin-top: 30px;"><i class="material-icons" style="vertical-align: bottom;">
+                                picture_as_pdf
+                                </i>Gera PDF</a>
     {% endif %}
 {% endif %}

@@ -22,23 +22,7 @@ $(function () {
     var saveForm = function () {
 		var form = $(this);
 		var formData = new FormData(this);
-		var msg_succes;
-		var msg_error;
 		var clear = false;
-
-		if (form.attr("id") == "palestrante-create"){
-			msg_succes = 'Palestrante adicionada com sucessor!';
-			msg_error = 'Não foi possivel adicionar o palestrante';
-			clear = true;
-		
-		}else if (form.attr("id") == "palestrante-update"){
-			msg_succes = 'Palestrante alterada com sucessor!';
-			msg_error = 'Não foi possivel alterar o palestrante';
-		
-		}else{
-			msg_succes = 'Palestrante excluída com sucessor!';
-			msg_error = 'Não foi possivel excluir o palestrante';
-		}
 		
 		$.ajax({
 			url: form.attr("action"),
@@ -53,43 +37,12 @@ $(function () {
 					$("#update-create").html(data.programacao_create_html)
 					$("#programacao-table tbody").html(data.table_programacao_html)
 					$(".modal-config").modal("hide");
-					$.notify({
-						// options
-						message: msg_succes,
-						},{
-						// settings
-						type: 'success',
-						timer: 500,
-						placement: {
-							from: "top",
-							align: "center"
-						},
+					$("#messagens").html(data.messages)
 
-						animate: {
-							enter: 'animated bounceInDown',
-							exit: 'animated bounceOutUp'
-						},
-					});
 				}
 				else{
 					$(".modal-config").modal("hide");
-					$.notify({
-						// optionse
-						message: msg_error,
-						},{
-						// settings
-						type: 'danger',
-
-						placement: {
-							from: "top",
-							align: "center"
-						},
-
-						animate: {
-							enter: 'animated bounceInDown',
-								exit: 'animated bounceOutUp'
-						},
-					});
+					$("#messagens").html(data.messages)
 				}
 			}
 

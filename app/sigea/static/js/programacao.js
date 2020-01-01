@@ -20,23 +20,7 @@ $(function () {
   
     var saveForm = function () {
 		var form = $(this);
-		var msg_succes;
-		var msg_error;
 		var clear = false;
-
-		if (form.attr("id") == "programacao-create"){
-			msg_succes = 'Programação adicionada com sucessor!';
-			msg_error = 'Não foi possivel adicionar a programação!';
-			clear = true;
-		
-		}else if (form.attr("id") == "programacao-update"){
-			msg_succes = 'Programação alterada com sucessor!';
-			msg_error = 'Não foi possivel alterar a programação!';
-		
-		}else{
-			msg_succes = 'Programação excluída com sucessor!';
-			msg_error = 'Não foi possivel excluir a programação!';
-		}
 		
 		$.ajax({
 			url: form.attr("action"),
@@ -48,43 +32,11 @@ $(function () {
 					$("#programacao-table tbody").html(data.table_html);
 					$(".modal-config").modal("hide");
 					$("#area-filtro").html(data.filtro_form);
-					$.notify({
-						// options
-						message: msg_succes,
-						},{
-						// settings
-						type: 'success',
-						timer: 500,
-						placement: {
-							from: "top",
-							align: "center"
-						},
-
-						animate: {
-							enter: 'animated bounceInDown',
-							exit: 'animated bounceOutUp'
-						},
-					});
+					$("#messagens").html(data.messages)
 				}
 				else{
 					$(".modal-config").modal("hide");
-					$.notify({
-						// optionse
-						message: msg_error,
-						},{
-						// settings
-						type: 'danger',
-
-						placement: {
-							from: "top",
-							align: "center"
-						},
-
-						animate: {
-							enter: 'animated bounceInDown',
-								exit: 'animated bounceOutUp'
-						},
-					});
+					$("#messagens").html(data.messages)
 				}
 			}	
 

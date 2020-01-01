@@ -25,7 +25,7 @@
       <div class="py-5 text-center">
         <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}"><img class="d-block mx-auto mb-4" src="{{evento.banner.url}}" alt=""></a>
         <h2>{{evento.titulo}}</h2>
-         <p class="lead">Formulario de Inscrição</p>
+         <p class="lead">Formulário de Inscrição</p>
       </div>
       <div class="row">
         <div class="col-md-8 order-md-1" style="left: 200px;">
@@ -59,7 +59,7 @@
                       </div>
                       <div class="col-md-9 mb-3">
                           <label class="font-weight-bold" for="nome">Endereço:</label>
-                          {% render_field formulario.endereco placeholder="Digite seu Endereço." class="form-control" %}
+                          {% render_field formulario.endereco class="form-control" %}
                       </div>
                     </div>
                     <div class="row">
@@ -72,42 +72,44 @@
                         {% render_field formulario.curso placeholder="Opcional." class="form-control" %}
                     </div>
                     </div>
-                    <hr class="mb-4">
-                    <h4 class="mb-3">Atividades</h4>
-                    <h7 class="mb-3">Selecione as atividades que gostaria de se inscrever</h7>
+                    {% if atividades %}
+                      <hr class="mb-4">
+                      <h4 class="mb-3">Atividades</h4>
+                      <h7 class="mb-3">Selecione as atividades que irá participar</h7>
 
-                    <div class="d-block my-3" style="margin-left: 12px;">
-                        <table>
-                          <thead>
+                      <div class="d-block my-3" style="margin-left: 12px;">
+                          <table>
+                            <thead>
+                              <tr>
+                                <td  style="padding-left: 12px;">Atividade</td>
+                                <td  style="padding-left: 12px;">Data / Horário</td>
+                                <td  style="padding-left: 12px;">Tipo</td>
+                              </tr>
+                            </thead>    
+                            {% for pk, choice in formulario.atividade.field.widget.choices %}
                             <tr>
-                              <td  style="padding-left: 12px;">Atividade</td>
-                              <td  style="padding-left: 12px;">Data / Horario</td>
-                              <td  style="padding-left: 12px;">Tipo</td>
+                              <td>
+                                <div class="custom-control custom-checkbox">
+                                  <input class="custom-control-input" {% for m2moption in model.m2moptions.all %}{% if option.pk == pk %}checked="checked"{% endif %}{% endfor %} type="checkbox" id="id_atividade_{{ forloop.counter0 }}" value="{{ pk }}" name="atividade" />
+                                  <label class="custom-control-label" for="id_atividade_{{ forloop.counter0 }}">{{choice}}</label>
+                                </div>
+                              </td>
+                              {% for atv in atividades %}
+                                {% if atv.pk == pk %}
+                                  <td style="padding-left: 12px;">
+                                    {{atv.data_hora|date:"d/m - H:i"}}
+                                  </td>
+                                  <td style="padding-left: 12px;">
+                                    {{atv.tipo}}
+                                  </td>
+                                {% endif %}
+                              {% endfor %}
                             </tr>
-                          </thead>    
-                          {% for pk, choice in formulario.atividade.field.widget.choices %}
-                          <tr>
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" {% for m2moption in model.m2moptions.all %}{% if option.pk == pk %}checked="checked"{% endif %}{% endfor %} type="checkbox" id="id_atividade_{{ forloop.counter0 }}" value="{{ pk }}" name="atividade" />
-                                <label class="custom-control-label" for="id_atividade_{{ forloop.counter0 }}">{{choice}}</label>
-                              </div>
-                            </td>
-                            {% for atv in atividades %}
-                              {% if atv.pk == pk %}
-                                <td style="padding-left: 12px;">
-                                  {{atv.data_hora|date:"d/m - H:i"}}
-                                </td>
-                                <td style="padding-left: 12px;">
-                                  {{atv.tipo}}
-                                </td>
-                              {% endif %}
-                            {% endfor %}
-                          </tr>
-                          {% endfor %}                
-                        </table>
-                    </div>
-                    <hr class="mb-4">
+                            {% endfor %}                
+                          </table>
+                      </div>
+                      <hr class="mb-4">
+                    {% endif %}
                     <button class="btn btn-primary btn-lg btn-block" type="submit">Inscrever-se</button>
                 </form>
             </div>

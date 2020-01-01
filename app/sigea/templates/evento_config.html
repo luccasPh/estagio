@@ -52,7 +52,7 @@
         </a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#inscricoes " role="tab">
          <i class="material-icons">list_alt</i>
-          <span>Inscriçoes</span>
+          <span>Inscrições</span>
         </a>
       </div>
     </div>
@@ -119,6 +119,11 @@
               <div id="banner-form">
                 {% include 'includes/banner_form.html' %}
               </div>
+              <button type="submit" class="btn btn-success mb-4">
+                  <i class="material-icons" style="vertical-align: bottom;">
+                      save</i>
+                      Salvar Modificações
+              </button>
             </form>
           </div>
           <div class="tab-pane" id="apresentacao" role="tabpanel">
@@ -151,10 +156,9 @@
                       </div>
                     </div>
                   </div>
-                  <br>
                   <button type="submit" class="btn btn-success mb-4"><i class="material-icons" style="vertical-align: bottom;">
                     save</i>
-                    Salvar Modificaçoes
+                    Salvar Modificações
                   </button>
               </div>
             </form>
@@ -231,7 +235,7 @@
             </div>
             <div class="tab-pane" id="inscricoes" role="tabpanel">
               <br>
-                <h3>INSCRIÇOES</h3>
+                <h3>INSCRIÇÕES</h3>
                 <hr>
                 <div class="jumbotron">
                     <div class="box inscricao ng-scope">
@@ -244,7 +248,7 @@
                             <div class="col">
                               <button type="submit" class="btn btn-success mb-4"><i class="material-icons" style="vertical-align: bottom;">
                                 filter_list
-                                </i>Filtra Inscriçoes</button>
+                                </i>Filtra Inscrições</button>
                             </div>
                             <div class="col" style="left: 160px;" id="total-inscricao">
                               {% include 'includes/total_inscricao.html' %}
@@ -359,6 +363,7 @@
 
     <script>
       $("#popover").popover({ trigger: "hover" });
+      $("#popover2").popover({ trigger: "hover" });
 
       tinymce.init({
         selector:'textarea',

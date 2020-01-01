@@ -26,7 +26,7 @@
          <nav class="navbar navbar-light box-shadow">
           <div class="container" style="margin-left: 161px;margin-right: 200px;">
             <a href="https://www.uespi.br/site/" title="Universidade Estadual do Piauí"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
-            <a href="/" title="Sistema de Gerenciamento de Eventos Acadamecios"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+            <a href="/" title="Sistema de Gerenciamento de Eventos Acadêmicos"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
           </div>
         </nav>
     </div>
@@ -106,7 +106,7 @@
                                                     <th scope="col">TITULO</th>
                                                     <th scope="col">PALESTRANTE</th>
                                                     <th scope="col">TIPO</th>
-                                                    <th scope="col">HORARIO</th>
+                                                    <th scope="col">HORÁRIO</th>
                                                   </tr>
                                                   </thead>
                                                   <tbody>
@@ -133,7 +133,7 @@
                                                       <th scope="col">Titulo</th>
                                                       <th scope="col">Palestrante</th>
                                                       <th scope="col">Tipo</th>
-                                                      <th scope="col">Horario</th>
+                                                      <th scope="col">Horário</th>
                                                     </tr>
                                                   </thead>
                                                   <tbody>
@@ -200,9 +200,10 @@
             <h3 class="with-subtitle">Organização</h3>
             <p class="subtitle"></p>
           </div>
+            <br>
             <div class="text-center">
             <h3 class="with-subtitle">{{organizacao.nome}}</h3>
-            <p class="subtitle">Email: {{organizacao.email}} | Telefone: {{organizacao.telefone}}</p>
+            <p class="subtitle">Email: <strong>{{organizacao.email}}</strong> | Telefone: <strong>{{organizacao.telefone}}</strong></p>
           </div>
         </div>
         </div>

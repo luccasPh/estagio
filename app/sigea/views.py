@@ -423,10 +423,19 @@ class PalestranteCreate(TestUsuario, View):
                 "palestrante": palestrante,
                 "evento": evento
             })
-
+            
+            messages.info(request, "Palestrante adicionado com sucessor.")
             data["valido_form"] = True
+            data["messages"] = render_to_string("includes/messages.html", request=request)
 
-        return JsonResponse(data)
+            return JsonResponse(data)
+        
+        else:
+            data["messages"] = render_to_string("includes/messages.html", {
+                "form": palestrante_form
+            }, request=request)
+            
+            return JsonResponse(data)
 
 class PalestranteUpdate(TestUsuario, View):
     
@@ -473,9 +482,18 @@ class PalestranteUpdate(TestUsuario, View):
                 "evento": evento
             })
 
+            messages.info(request, "Palestrante alterado com sucessor.")
             self.data["valido_form"] = True
+            self.data["messages"] = render_to_string("includes/messages.html", request=request)
 
-        return JsonResponse(self.data)
+            return JsonResponse(self.data)
+        
+        else:
+            self.data["messages"] = render_to_string("includes/messages.html", {
+                "form": palestrante_form
+            }, request=request)
+            
+            return JsonResponse(self.data)
 
 class PalestranteDelete(TestUsuario, View):
     
@@ -518,8 +536,10 @@ class PalestranteDelete(TestUsuario, View):
             "evento": evento
         })
 
+        messages.info(request, "Palestrante excluído com sucessor.")
         self.data["valido_form"] = True
-    
+        self.data["messages"] = render_to_string("includes/messages.html", request=request)
+
         return JsonResponse(self.data)
 
 class ProgramacaoCreate(TestUsuario, View):
@@ -546,9 +566,19 @@ class ProgramacaoCreate(TestUsuario, View):
                 "atividade_filter": atividade_filter
             })
 
+            messages.info(request, "Programação adicionado com sucessor.")
             data["valido_form"] = True
+            data["messages"] = render_to_string("includes/messages.html", request=request)
 
-        return JsonResponse(data)
+            return JsonResponse(data)
+        
+        else:
+            data["messages"] = render_to_string("includes/messages.html", {
+                "form": programacao_form
+            }, request=request)
+            
+            return JsonResponse(data)
+
 
 class ProgramacaoUpdate(TestUsuario, View):
     
@@ -584,9 +614,18 @@ class ProgramacaoUpdate(TestUsuario, View):
                 "evento": evento
             })
 
+            messages.info(request, "Programação alterado com sucessor.")
             self.data["valido_form"] = True
+            self.data["messages"] = render_to_string("includes/messages.html", request=request)
 
-        return JsonResponse(self.data)
+            return JsonResponse(self.data)
+        
+        else:
+            self.data["messages"] = render_to_string("includes/messages.html", {
+                "form": programacao_form
+            }, request=request)
+            
+            return JsonResponse(self.data)
 
 
 
@@ -627,6 +666,8 @@ class ProgramacaoDelete(TestUsuario, View):
             "atividade_filter": atividade_filter
         })
 
+        messages.info(request, "Programação excluído com sucessor.")
         self.data["valido_form"] = True
-    
-        return JsonResponse(self.data)  
+        self.data["messages"] = render_to_string("includes/messages.html", request=request)
+
+        return JsonResponse(self.data)

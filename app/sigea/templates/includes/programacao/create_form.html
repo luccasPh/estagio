@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-5">
         <label class="font-weight-bold" for="titulo">Titulo:</label>
-        {% render_field programacao_form.titulo placeholder="Titulo da Programacao." class="form-control" %}
+        {% render_field programacao_form.titulo placeholder="Titulo da Programação." class="form-control" %}
     </div>
     <div class="col-md-3">
         <label class="font-weight-bold" for="palestrante">Palestrante:</label>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-2">
         <label class="font-weight-bold" for="tipo">Tipo de Atividade:</label>
-        {% render_field programacao_form.tipo class="form-control"%}
+        {% render_field programacao_form.tipo class="form-control" placeholder="Ex: Minicurso"%}
     </div>
      <div class="col-md-2">
         <label class="font-weight-bold" for="inscrever">Requer inscrição:</label>
@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="col-md-3" style="padding-left: 0px;padding-top: 12px;">
-    <label class="font-weight-bold" for="data_hora">Data / Horario:</label>
+    <label class="font-weight-bold" for="data_hora">Data / Horário:</label>
     <div class="form-group">
         <div class="input-group date" id="datetimepicker5" data-target-input="nearest">
             {% render_field programacao_form.data_hora placeholder="Horario da Atividade." class="form-control datetimepicker-input" data-target="#datetimepicker5" %}

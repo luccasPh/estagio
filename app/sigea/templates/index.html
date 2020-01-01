@@ -29,7 +29,7 @@
          <nav class="navbar navbar-light box-shadow">
           <div class="container">
             <a href="https://www.uespi.br/site/" title="Universidade Estadual do Piauí"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
-            <a href="/" title="Sistema de Gerenciamento de Eventos Acadamecios"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+            <a href="/" title="Sistema de Gerenciamento de Eventos Acadêmicos"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
             {% if logado %}
               {% include 'includes/drop_organizacao.html' %}
             {% else %}
@@ -83,7 +83,7 @@
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 
     <div id="messagens">
-    
+      {% include 'includes/messages.html' %}
     </div>
   </body>
 </html>

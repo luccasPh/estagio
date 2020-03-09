@@ -44,7 +44,7 @@
         </a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#palestrantes" role="tab">
           <i class="material-icons">person</i>
-          <span>Palestrantes</span>
+          <span>Palestrantes/Ministrantes</span>
         </a>
         <a class="list-group-item list-group-item-action" data-toggle="list" href="#programacao" role="tab">
           <i class="material-icons">date_range</i>
@@ -165,7 +165,7 @@
           </div>
           <div class="tab-pane" id="palestrantes" role="tabpanel">
             <br>
-            <h3>PALESTRANTES</h3>
+            <h3>PALESTRANTES/MINISTRANTES</h3>
             <hr>
             <form method="POST" enctype='multipart/form-data' id="palestrante-create" action="{% url 'sigea:palestrante_add' evento.id %}">
               {% csrf_token %}
@@ -219,7 +219,7 @@
                         <thead>
                           <tr>
                             <th data-field="titulo">TITULO</th>
-                            <th data-field="palestrante">PALESTRANTE</th>
+                            <th data-field="palestrante">PALESTRANTE/MINISTRANTES</th>
                             <th data-field="tipo">TIPO</th>
                             <th data-field="inscricao">INSCRIÇÃO</th>
                             <th data-field="data-hora">DATA/HORA</th>
@@ -431,6 +431,7 @@
     </script>
   
   <div id="messagens">
+    {% include 'includes/messages.html' %}
   </div>
 
 </body>

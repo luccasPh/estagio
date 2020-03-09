@@ -3,7 +3,8 @@
 <div class="col-md-4">
     <div class="card mb-4 box-shadow text-center shadow p-3 mb-5 bg-white rounded">
         <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
-        <div class="card-body" >
+        <hr>
+        <div class="card-body" style="padding-top: 0px;">
             <h5 class="card-title">
                 <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}" >{{evento.titulo}}</a>
             </h5>

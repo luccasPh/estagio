@@ -6,13 +6,13 @@
     <td style="vertical-align: middle;">
         <button type="button" 
                 class="btn btn-warning btn-sm palestrante-update-form"
-                data-toggle="tooltip" data-placement="top" title="Editar programação" 
+                data-toggle="tooltip" data-placement="top" title="Editar Palestrante/Ministrante" 
                 data-url="{% url 'sigea:palestrante_update' evento.id palestrante.id %}"><i class="material-icons">edit</i>
         </button>
 
         <button type="button" 
                 class="btn btn-danger btn-sm palestrante-delete-form"
-                data-toggle="tooltip" data-placement="top" title="Excluir programação" 
+                data-toggle="tooltip" data-placement="top" title="Excluir Palestrante/Ministrante" 
                 data-url="{% url 'sigea:palestrante_delete' evento.id palestrante.id %}"><i class="material-icons">delete</i>
         </button>
     </td>

@@ -120,3 +120,7 @@ h5{
   line-height: inherit;
   color: #1a28e7;
 }
+
+table th {
+  width: auto !important;
+}

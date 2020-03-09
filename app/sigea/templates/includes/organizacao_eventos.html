@@ -6,7 +6,8 @@
             {% if evento.banner.url != None %}
                 <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
             {% endif %}
-            <div class="card-body">
+            <hr>
+            <div class="card-body" style="padding-top: 0px;">
                 <a href="{% url 'sigea:evento_pagina' evento.id evento.slug %}" target="_blank">
                     <h5 class="card-title">{{evento.titulo}}</h5>
                 </a>
@@ -34,5 +35,5 @@
     {% endfor %}
 </div>
 {% else %}
-<h5> Você não possui eventos cadastrados, cadastre utilizado o menu da organização.</h5>
+<h5> Você não possui eventos cadastrados, cadastre um utilizado o menu da organização.</h5>
 {% endif %}

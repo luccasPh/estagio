@@ -124,7 +124,7 @@ class TestUsuario(UserPassesTestMixin):
         return redirect('sigea:index')
 
 class InscricaoPdf(View):
-
+    
     def get(self, request, *args, **kwargs):
         evpk = self.kwargs['evpk']
         evento = get_object_or_404(models.Evento, pk=evpk)

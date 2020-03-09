@@ -32,8 +32,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class Evento(models.Model):
     titulo = models.CharField(max_length=200)
-    data_inicio = models.DateField(blank=True)
-    data_fim = models.DateField(blank=True)
+    data_inicio = models.DateField()
+    data_fim = models.DateField()
     local = models.CharField(max_length=125, blank=True)
     banner = models.ImageField(upload_to="evento/banner", default="none-banner.png")
     organizacao = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

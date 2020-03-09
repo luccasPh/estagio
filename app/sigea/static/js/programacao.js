@@ -41,9 +41,7 @@ $(function () {
 			}	
 
 		});
-
-		if(clear)
-			$("#programacao-create")[0].reset();
+		$("#programacao-create")[0].reset();
 
 		return false;
     };

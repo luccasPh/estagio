@@ -22,17 +22,18 @@
 <body>
 
   <!-- Navigation -->
-    <div class="shadow-sm p-2 mb-2 bg-white rounded">
-         <nav class="navbar navbar-light box-shadow">
-          <div class="container" style="margin-left: 161px;margin-right: 200px;">
-            <a href="https://www.uespi.br/site/" title="Universidade Estadual do Piauí"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
-            <a href="/" title="Sistema de Gerenciamento de Eventos Acadêmicos"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
-          </div>
-        </nav>
-    </div>
+   
 
   <!-- Baner -->
       <div class="page-baner" id="baner" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('{{evento.capa.url}}');">
+        
+          <nav class="navbar transparent navbar-inverse">
+           <div class="container navbar-inner">
+             <a href="https://www.uespi.br/site/" title="Universidade Estadual do Piauí"><img class="instituicao-img" src="{% static 'img/instituicao.png' %}" alt="Instituicao img"></a>
+             <a href="/" title="Sistema de Gerenciamento de Eventos Acadêmicos"><img class="logo-img" src="{% static 'img/logo.png' %}" alt="Logo img"></a>
+           </div>
+         </nav>
+     </div>
         <div class="carousel-caption" style="top: 315px;">
           <div class="col-xs-12 center-block">
             <div class="titulo">
@@ -61,10 +62,11 @@
 
       <div class="container">
         {% if sobre %}
-        <div class="jumbotron" style="margin-top: 100px;">
+        <div class="jumbotron" style="margin-top: 100px;padding-top: 24px;">
           <div class="box inscricao ng-scope">
             <div class="text-center">
-            <h3 class="with-subtitle">Sobre o Evento</h3>
+            <h1 class="with-subtitle">Sobre o Evento</h1>
+            <hr>
             <p class="subtitle"></p>
           </div>
             <div style="margin-right: 100px; margin-left: 100px; margin-top: 30px;">
@@ -74,10 +76,11 @@
         </div>
         {% endif %}
         {% if programacoes %}
-        <div class="jumbotron">
+        <div class="jumbotron"style="padding-top: 24px;">
           <div class="box inscricao ng-scope">
             <div class="text-center">
-              <h3 class="with-subtitle">Programação</h3>
+              <h1 class="with-subtitle">Programação</h1>
+              <hr>
               <p class="subtitle"></p>
             </div>
               {% regroup programacoes by data_hora|date:"d F Y" as programacoes_by_day %}
@@ -104,7 +107,7 @@
                                                   <thead>
                                                   <tr>
                                                     <th scope="col">TITULO</th>
-                                                    <th scope="col">PALESTRANTE</th>
+                                                    <th scope="col">PALESTRANTE/MINISTRANTE</th>
                                                     <th scope="col">TIPO</th>
                                                     <th scope="col">HORÁRIO</th>
                                                   </tr>
@@ -131,7 +134,7 @@
                                                   <thead>
                                                     <tr>
                                                       <th scope="col">Titulo</th>
-                                                      <th scope="col">Palestrante</th>
+                                                      <th scope="col">Palestrante/Ministrante</th>
                                                       <th scope="col">Tipo</th>
                                                       <th scope="col">Horário</th>
                                                     </tr>
@@ -163,10 +166,11 @@
         </div>
         {% endif %}
         {% if palestrantes %}
-        <div class="jumbotron">
+        <div class="jumbotron" style="padding-top: 24px;">
           <div class="box inscricao ng-scope">
             <div class="text-center">
-            <h3 class="with-subtitle">Palestrantes</h3>
+            <h1 class="with-subtitle">Palestrantes/Ministrantes</h1>
+            <hr>
             <p class="subtitle"></p>
           </div>
             <div class="row" style="text-align: -webkit-center;margin-top: 30px;">
@@ -174,7 +178,7 @@
               <div class="col-sm-3 foto">
                 <img class="rounded-circle" src="{{palestrante.imagem.url}}" alt="Generic placeholder image" width="95" height="95" style="margin-top: 10px;">
                 <h5>{{palestrante.nome}}</h5>
-                <p>{{palestrante.afiliacao}}</p>
+                <p><small class="text-muted">{{palestrante.afiliacao}}</small></p>
               </div><!-- /.col-sm-3 -->
               {% endfor %}
             </div><!-- /.row -->
@@ -182,10 +186,11 @@
         </div>
         {% endif %}
         {% if evento.local %}
-        <div class="jumbotron">
+        <div class="jumbotron" style="padding-top: 24px;">
           <div class="box inscricao ng-scope">
             <div class="text-center">
-            <h3 class="with-subtitle">Local do evento</h3>
+            <h1 class="with-subtitle">Local do evento</h1>
+            <hr>
             <p class="subtitle"></p>
             </div>
               <div style="text-align: -webkit-center;margin-top: 30px;">
@@ -194,10 +199,11 @@
             </div>
         </div>
          {% endif %}
-        <div class="jumbotron" style="margin-bottom: 0px; padding-bottom: 0px;">
+        <div class="jumbotron" style="margin-bottom: 0px; padding-bottom: 0px; padding-top: 24px;">
           <div class="box inscricao ng-scope">
             <div class="text-center">
-            <h3 class="with-subtitle">Organização</h3>
+            <h1 class="with-subtitle">Organização</h1>
+            <hr>
             <p class="subtitle"></p>
           </div>
             <br>
@@ -225,9 +231,6 @@
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap-notify.min.js' %}"></script>
-
-  <!--Custom JavaScript-->
-  <script src="{% static 'js/evento_pagina.js' %}"></script>
 
   {% if messages %}
    {% for message in messages %}

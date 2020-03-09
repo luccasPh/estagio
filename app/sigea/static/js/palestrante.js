@@ -47,9 +47,7 @@ $(function () {
 			}
 
 		});
-
-		if(clear)
-			$("#palestrante-create")[0].reset();
+		$("#palestrante-create")[0].reset();
 
 		return false;
     };

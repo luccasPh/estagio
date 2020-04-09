@@ -106,6 +106,6 @@ venv.bak/
 .mypy_cache/
 
 app/sigea/media/evento
-app/isgea/media/palestrantes
+app/sisgea/media/palestrantes
 .vscode/
 teste/

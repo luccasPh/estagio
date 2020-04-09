@@ -21,3 +21,12 @@ ADD requirements.txt /app/
 RUN pip install -r requirements.txt
 ADD . /app/
 
+# collect static files
+RUN python manage.py collectstatic --noinput
+
+# add and run as non-root user
+RUN adduser -D devph
+USER devph
+
+# run gunicorn
+CMD gunicorn app.wsgi:application --bind 0.0.0.0:$PORT

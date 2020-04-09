@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('sigea.urls')),
-    path('admin/', admin.site.urls),
+    path('sigea-admin-page/', admin.site.urls),
     path('tinymce/', include('tinymce.urls'))
 ]

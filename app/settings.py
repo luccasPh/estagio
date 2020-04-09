@@ -25,7 +25,7 @@ SECRET_KEY = 're!h5lzld5gzh7z)zmg5g5xl_m#-1swjh6@mpv#f3h3%&!ro8$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sigea.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -134,7 +134,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'sigea/static')
 
 STATICFILES_DIRS = (
-     os.path.join(BASE_DIR, 'static'),
+     os.path.join(BASE_DIR, 'sigea/static'),
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -151,3 +151,37 @@ AUTH_USER_MODEL = 'sigea.CustomUser'
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    }
+}

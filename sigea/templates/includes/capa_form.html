@@ -42,7 +42,11 @@ h1{
 <div class="modal" id="capa-modal" >
   <div class="modal-dialog modal-xl" role="document" >
     <div class="modal-content" >
+    {% if evento.capa.url != None %}
       <div class="modal-header page-baner" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('{{evento.capa.url}}');">
+    {% else %}
+      <div class="modal-header page-baner" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('https://res.cloudinary.com/hndjdlnwz/image/upload/v1586531630/none-capa_xnkxdr.png');">
+    {% endif %}
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

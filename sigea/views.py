@@ -355,7 +355,6 @@ class EventoConfig(TestUsuario, View):
         evpk = self.kwargs["evpk"]
         evento = get_object_or_404(models.Evento, pk=evpk)
         evento_config_form = forms.EventoForm(request.POST, request.FILES, instance=evento)
-
         if evento_config_form.is_valid():
             evento_config_form.save()
             

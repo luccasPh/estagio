@@ -44,4 +44,4 @@ urlpatterns = [
     path('evento/<int:evpk>/palestrante/<int:papk>/update/', views.PalestranteUpdate.as_view(), name="palestrante_update"),
     path('evento/<int:evpk>/palestrante/<int:papk>/delete/', views.PalestranteDelete.as_view(), name="palestrante_delete"),
     
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

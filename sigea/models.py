@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from .manager import CustomUserManager
 from autoslug import AutoSlugField
 from tinymce.models import HTMLField
+from cloudinary.models import CloudinaryField
 
 import os
 
@@ -35,7 +36,7 @@ class Evento(models.Model):
     data_inicio = models.DateField()
     data_fim = models.DateField()
     local = models.CharField(max_length=125, blank=True)
-    banner = models.ImageField(upload_to="evento/banner", default="none-banner.png")
+    banner = CloudinaryField('imagem')
     organizacao = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     slug = AutoSlugField(max_length=200, populate_from='titulo', always_update=True)
     sobre = models.TextField(blank=True)

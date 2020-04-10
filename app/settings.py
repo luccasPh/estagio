@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'django_cleanup.apps.CleanupConfig',
-    'tinymce'
+    'tinymce',
+    'cloudinary',
 
 ]
 
@@ -158,3 +159,9 @@ LOGIN_REDIRECT_URL = '/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 django_heroku.settings(locals())
+
+CLOUDINARY = {
+    'cloud_name' : 'hndjdlnwz',
+    'api_key' : '575164376919133',
+    'api_secret': 'rSsTkRqijFVDGeu089aOi5HLRYo'
+}

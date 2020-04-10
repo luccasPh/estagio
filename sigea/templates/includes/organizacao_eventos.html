@@ -1,10 +1,14 @@
 {% load static %}
+{% load cloudinary %} 
 {% if eventos %}
 <div class="card-columns">
     {% for evento in eventos %}
         <div class="card text-center shadow p-3 mb-5 bg-white rounded">
             {% if evento.banner.url != None %}
+                <!--
                 <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
+                -->
+                {% cloudinary evento.banner class="card-imag-top" alt="Card image cap" %}
             {% endif %}
             <hr>
             <div class="card-body" style="padding-top: 0px;">

@@ -24,7 +24,11 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
+        {% if evento.banner.url != None %}
+            <img class="card-imag-top" src="{{evento.banner.url}}" alt="Card image cap">
+        {% else %}
+            <img class="card-imag-top" src="https://res.cloudinary.com/hndjdlnwz/image/upload/v1586483669/none-banner_gv65ve.png" alt="Card image cap">
+        {% endif %}
         <div class="card-body" >
             <h5 class="card-title" style="color: blue;">{{evento.titulo}}</h5>
         </div>

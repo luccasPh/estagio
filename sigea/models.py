@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from .manager import CustomUserManager
 from autoslug import AutoSlugField
-from tinymce.models import HTMLField
 
 import os
 

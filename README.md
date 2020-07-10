@@ -51,11 +51,13 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
   $ docker-compose build
   $ docker-compose up -d
 
-  #Tende a da error na primeira veies
+  #Tende a da error na primeira veies.
   $ docker-compose stop
   $ docker-compose up -d
 
   $ docker-compose exec app python manage.py migrate
+
+  #Cria um usuário.
   $ docker-compose exec app python manage.py createsuperuser
 
   Depois acesse http://localhost:3000/

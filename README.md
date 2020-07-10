@@ -56,6 +56,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
   $ docker-compose up -d
 
   $ docker-compose exec app python manage.py migrate
+  $ docker-compose exec app python manage.py createsuperuser
 
   Depois acesse http://localhost:3000/
 

@@ -8,8 +8,10 @@ services:
       - .:/app
     ports:
       - "3000:8000"
+
     depends_on:
       - "db"
+
   db:
     image: mysql:latest
     command: mysqld --default-authentication-plugin=mysql_native_password

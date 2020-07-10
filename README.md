@@ -9,15 +9,16 @@
 
 - [Sobre](#sobre)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Resultado](#resultado)
+- [Como testar](#como-testar)
 
 <a id="sobre"></a>
 
 ## :bookmark: Sobre
 
-O <strong>Ecoleta</strong> é uma aplicação Web e Mobile para ajudar pessoas a encontrarem pontos de coleta para reciclagem.
+<strong>SIGEA</strong> é uma aplicação Web feita com intuito de ajuda comunidade acadêmicos no gerenciamento e divulgação de seus eventos a partir de uma plataforma on-line de fácil utilização.
 
-Essa aplicação foi construída durante <strong>Booster</strong> da <strong>Next Level Week</strong> distribuída pela [Rocketseat](https://rocketseat.com.br/) e teve como fonte de ideia <strong>semana do meio ambiente</strong>.
+Essa aplicação foi construída durante período de estagio obrigatório que eu cumpri no Departamento de Tecnologia da Informação e Comunicação - DTIC - UESPI. A necessidade do sistema se deve ao fato da deste departamento receber várias requisições da comunidade acadêmica para criação de uma página para divulgar os
+seus eventos e fazer as inscrições dos participantes.
 
 <a id="tecnologias-utilizadas"></a>
 
@@ -25,36 +26,41 @@ Essa aplicação foi construída durante <strong>Booster</strong> da <strong>Nex
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias
 
-- [TypeScript](https://www.typescriptlang.org/)
-- [Django REST framework](https://www.django-rest-framework.org/)
+- [Django](https://www.djangoproject.com/)
 - [Docker](https://www.docker.com/)
-- [ReactJS](https://reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [Expo](https://expo.io/)
+- [MySQL](https://www.mysql.com/)
 
-<a id="resultado"></a>
+<a id="como-testar"></a>
+## :fire: Como Testar
 
-## :heavy_check_mark: :computer: Resultado Web
+- ### **Pré-requisitos**
 
-<h1 align="center">
-    <img alt="Web" src=".github/web.gif" width="900px">
-</h1>
+  - É **necessário** possuir o **[Docker](https://www.docker.com/get-started)** instalado na máquina
+  - Também, é **preciso** instalar o **[Docker Compose](https://docs.docker.com/compose/install/)**
 
-<h1 align="center">
-    <a href="https://ecoletas.netlify.app">Site</a>
-</h1>
+1. Faça um clone :
 
-## :heavy_check_mark: :iphone: Resultado Mobile
+```sh
+  $ git clone https://github.com/luccasPh/estagio.git
+```
 
-<h1 align="center">
-    <img alt="Mobile" src=".github/mobile.gif" width="300px">
-</h1>
+2. Executando a Aplicação:
 
-<h1 align="center">
-    <a href="https://drive.google.com/file/d/1RruZqW0ko7ZcChYROKTwE2H_5v4xOo3S/view?usp=sharing">Apk</a>
-</h1>
+```sh
+  $ cd estagio
+  $ docker-compose build
+  $ docker-compose up -d
 
-<a id="como-usar"></a>
+  #Tende a da error na primeira veies
+  $ docker-compose stop
+  $ docker-compose up -d
+
+  $ docker-compose exec app python manage.py migrate
+
+  Depois acesse http://localhost:3000/
+
+```
+
 
 <h4 align="center">
     Power by <a href="https://www.linkedin.com/in/lucas-pinheiro-462794152/" target="_blank">Lucas Pinheiro</a>

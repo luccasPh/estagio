@@ -63,6 +63,12 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
   Depois acesse http://localhost:3000/
 
 ```
+3. Verção online:
+```sh
+    https://sigea.herokuapp.com/
+    email: teste@teste.com
+    senha: sigea123456
+```
 
 
 <h4 align="center">

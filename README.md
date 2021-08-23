@@ -15,9 +15,9 @@
 
 ## :bookmark: Sobre
 
-<strong>SIGEA</strong> é uma aplicação Web feita com intuito de ajuda comunidade acadêmicos no gerenciamento e divulgação de seus eventos a partir de uma plataforma on-line de fácil utilização.
+<strong>SIGEA</strong> é uma aplicação Web feita com intuito de ajuda a comunidade acadêmica no gerenciamento e divulgação de seus eventos a partir de uma plataforma on-line de fácil utilização.
 
-Essa aplicação foi construída durante período de estagio obrigatório que eu cumpri no Departamento de Tecnologia da Informação e Comunicação - DTIC - UESPI. A necessidade do sistema se deve ao fato da deste departamento receber várias requisições da comunidade acadêmica para criação de páginas web para divulgação dos eventos e fazer as inscrições dos participantes.
+Essa aplicação foi construída durante período de estágio obrigatório que eu cumpri no Departamento de Tecnologia da Informação e Comunicação - DTIC - UESPI. A necessidade do sistema se deve ao fato da deste departamento receber várias requisições da comunidade acadêmica para criação de páginas web para divulgação dos eventos e fazer as inscrições dos participantes.
 
 <a id="tecnologias-utilizadas"></a>
 

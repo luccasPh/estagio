@@ -60,7 +60,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
   $ docker-compose exec app python manage.py createsuperuser
 
   Depois acesse http://localhost:3000/
-
+```
 
 <h4 align="center">
     Power by <a href="https://www.linkedin.com/in/lucas-pinheiro-462794152/" target="_blank">Lucas Pinheiro</a>
